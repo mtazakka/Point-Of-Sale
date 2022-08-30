@@ -15,6 +15,8 @@ const pool = new Pool({
 
 var indexRouter = require('./routes/index');
 var dashboardRouter = require('./routes/dashboard')(pool);
+var newsaleRouter = require('./routes/newsale')(pool);
+var addsupplierRouter = require('./routes/supplier/addsupplier')(pool);
 // var barangRouter = require('./routes/barang')(pool);
 // var penjualanRouter = require('./routes/penjualan')(pool);
 var usersRouter = require('./routes/users');
@@ -33,6 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/newsale', newsaleRouter);
+app.use('/addsupplier', addsupplierRouter);
 // app.use('/barang', barangRouter);
 // app.use('/penjualan', penjualanRouter);
 app.use('/users', usersRouter);

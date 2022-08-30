@@ -14,7 +14,7 @@
                 </a>
                 <hr class="sidebar-divider my-0">
 
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="dashboard">
                         <i class="fa-solid fa-suitcase-medical"></i>
                         <span>DASHBOARD</span></a>
@@ -26,16 +26,16 @@
                     INTERFACE
                 </div>
                 <!--SALE-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSale"
-                        aria-expanded="true" aria-controls="collapseSale">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSale" aria-expanded="true"
+                        aria-controls="collapseSale">
                         <i class="fa-solid fa-scale-balanced"></i>
                         <span>SALE</span>
                     </a>
-                    <div id="collapseSale" class="collapse" aria-labelledby="headingSale"
+                    <div id="collapseSale" class="collapse show" aria-labelledby="headingSale"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="newsale">New Sale</a>
+                            <a class="collapse-item active" href="newsale">New Sale</a>
                             <a class="collapse-item" href="managesale">Manage Sale</a>
                             <a class="collapse-item" href="possale">POS Sale</a>
                         </div>
@@ -70,7 +70,7 @@
                     <div id="collapseSupplier" class="collapse" aria-labelledby="headingSupplier"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="addsupplier">Add Supplier</a>
+                            <a class="collapse-item" href="addsuplier">Add Supplier</a>
                             <a class="collapse-item" href="supplierlist">Supplier List</a>
                             <a class="collapse-item" href="supplierledger">Supplier Ledger</a>
                             <a class="collapse-item" href="supplieradvancer">Supplier Advancer</a>
@@ -148,7 +148,9 @@
                         </div>
                     </div>
                 </li>
+
                 <hr class="sidebar-divider">
+
                 <div class="sidebar-heading">
                     USER
                 </div>
@@ -165,11 +167,14 @@
                             <a class="collapse-item" href="submit report">Submit Report</a>
                         </div>
                 </li>
+
                 <hr class="sidebar-divider d-none d-md-block">
+
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
             </ul>
+
             <!-- Start of Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
                 <!-- Main Content -->
@@ -186,20 +191,20 @@
 
                                 <a href="possale" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         class="fa-solid fa-square-plus" style="margin-top:5px ;"> <span
-                                            style="padding-left: 10px ;">POS
-                                            SALE</span></i></a>
+                                            style="padding-left: 10px ;">POS SALE</span></i></a>
                                 <a href="addproduct"
                                     class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
                                         class="fa-solid fa-square-plus" style="margin-top:5px;"> <span
-                                            style="padding-left: 10px ;">ADD
-                                            PRODUCT</span></i></a>
+                                            style="padding-left: 10px ;">ADD PRODUCT</span></i></a>
                                 <a href="addsupplier" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i
                                         class="fa-solid fa-square-plus" style="margin-top:5px ;"> <span
-                                            style="padding-left: 10px ;">ADD
-                                            SUPPLIER</span></i></a>
+                                            style="padding-left: 10px ;">ADD SUPPLIER</span></i></a>
+
                             </div>
+
                             <!-- Content Row -->
                             <div class="row">
+
                                 <!-- CONTENT // TOTAL COSTUMER -->
                                 <div class="col-xl-3 col-md-6 mb-4">
                                     <div class="card border-left-primary shadow h-100 py-2">
@@ -220,6 +225,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <!-- CONTENT // TOTAL PRODUCT -->
                                 <div class="col-xl-3 col-md-6 mb-4">
                                     <div class="card border-left-success shadow h-100 py-2">
@@ -239,6 +245,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <!-- CONTENT // TOTAL SUPPLIER -->
                                 <div class="col-xl-3 col-md-6 mb-4">
                                     <div class="card border-left-info shadow h-100 py-2">
@@ -264,6 +271,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <!-- CONTENT // TOTAL SALE -->
                                 <div class="col-xl-3 col-md-6 mb-4">
                                     <div class="card border-left-warning shadow h-100 py-2">
@@ -284,9 +292,32 @@
                                     </div>
                                 </div>
                             </div>
+
                             <!-- Content Row -->
                             <div class="row">
+
                                 <div class="col-lg-12 mb-4">
+
+                                    <!-- Illustrations -->
+                                    <!-- <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                            src="img/undraw_posting_photo.svg" alt="...">
+                                    </div>
+                                    <p>Add some quality, svg illustrations to your project courtesy of <a
+                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                                        constantly updated collection of beautiful svg images that you can use
+                                        completely free and without attribution!</p>
+                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations
+                                        on
+                                        unDraw &rarr;</a>
+                                </div>
+                            </div> -->
+
                                     <!-- Approach -->
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
@@ -319,10 +350,12 @@
                                             </ul>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                             <!-- Content Row -->
                             <div class="row">
+
                                 <!-- Area Chart -->
                                 <div class="col-xl-8 col-lg-7">
                                     <div class="card shadow mb-4">
@@ -353,6 +386,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <!-- Pie Chart -->
                                 <div class="col-xl-4 col-lg-5">
                                     <div class="card shadow mb-4">
@@ -395,9 +429,14 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
                         </div>
                         <!-- /.container-fluid -->
+
                 </div>
                 <!-- End of Main Content -->
+
                 <!-- Footer -->
                 <%- include('../partials/footer') %>

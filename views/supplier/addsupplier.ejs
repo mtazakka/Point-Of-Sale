@@ -1,0 +1,302 @@
+<%- include('../partials/header') %>
+
+    <body id="page-top">
+        <!-- Start of Page Wrapper -->
+        <div id="wrapper">
+            <!--sidebar-->
+            <ul ide="sidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+                id="accordionSidebar">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fa-solid fa-hospital"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">TAZAKKA<sup>ADMIN</sup>
+                    </div>
+                </a>
+                <hr class="sidebar-divider my-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard">
+                        <i class="fa-solid fa-suitcase-medical"></i>
+                        <span>DASHBOARD</span></a>
+                </li>
+
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">
+                    INTERFACE
+                </div>
+                <!--SALE-->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSale"
+                        aria-expanded="true" aria-controls="collapseSale">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <span>SALE</span>
+                    </a>
+                    <div id="collapseSale" class="collapse" aria-labelledby="headingSale"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="newsale">New Sale</a>
+                            <a class="collapse-item" href="managesale">Manage Sale</a>
+                            <a class="collapse-item" href="possale">POS Sale</a>
+                        </div>
+                    </div>
+                </li>
+                <!--COSTUMER-->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCostumer"
+                        aria-expanded="true" aria-controls="collapseCostumer">
+                        <i class="fa-solid fa-person-chalkboard"></i>
+                        <span>COSTUMER</span>
+                    </a>
+                    <div id="collapseCostumer" class="collapse" aria-labelledby="headingCostumer"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="addcostumer">Add Costumer</a>
+                            <a class="collapse-item" href="costumerlist">Costumer List</a>
+                            <a class="collapse-item" href="creditcostumer">Credit Costumer</a>
+                            <a class="collapse-item" href="paidcostumer">Paid Costumer</a>
+                            <a class="collapse-item" href="costumerledger">Costumer Ledger</a>
+                            <a class="collapse-item" href="costumeradvancer">Costumer Advancer</a>
+                        </div>
+                    </div>
+                </li>
+                <!--SUPPLIER-->
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSupplier"
+                        aria-expanded="true" aria-controls="collapseSupplier">
+                        <i class="fa-solid fa-boxes-packing"></i>
+                        <span>SUPPLIER</span>
+                    </a>
+                    <div id="collapseSupplier" class="collapse show" aria-labelledby="headingSupplier"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item active" href="addsupplier">Add Supplier</a>
+                            <a class="collapse-item" href="supplierlist">Supplier List</a>
+                            <a class="collapse-item" href="supplierledger">Supplier Ledger</a>
+                            <a class="collapse-item" href="supplieradvancer">Supplier Advancer</a>
+                        </div>
+                    </div>
+                </li>
+                <!--PRODUCT-->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
+                        aria-expanded="true" aria-controls="collapseProduct">
+                        <i class="fa-solid fa-pills"></i>
+                        <span>PRODUCT</span>
+                    </a>
+                    <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="addcategory">Add Category</a>
+                            <a class="collapse-item" href="categorylist">Category List</a>
+                            <a class="collapse-item" href="addunit">Add Unit</a>
+                            <a class="collapse-item" href="unitlist">Unit List</a>
+                            <a class="collapse-item" href="addproduct">Add Product</a>
+                            <!-- <a class="collapse-item" href="addproduct(csv)">Add Product(CSV)</a> -->
+                            <a class="collapse-item" href="manageproduct">Manage Product</a>
+                        </div>
+                    </div>
+                </li>
+                <!--PURCHASE-->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePurchase"
+                        aria-expanded="true" aria-controls="collapsePurchase">
+                        <i class="fa-solid fa-cart-arrow-down"></i>
+                        <span>PURCHASE</span>
+                    </a>
+                    <div id="collapsePurchase" class="collapse" aria-labelledby="headingPurchase"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="addpurchase">Add Purchase</a>
+                            <a class="collapse-item" href="managepurchase">Manage Purchase</a>
+                        </div>
+                    </div>
+                </li>
+                <!--STOCK-->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
+                        aria-expanded="true" aria-controls="collapseStock">
+                        <i class="fa-solid fa-list"></i>
+                        <span>STOCK</span>
+                    </a>
+                    <div id="collapseStock" class="collapse" aria-labelledby="headingStock"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="stockreport">Stock Report</a>
+                        </div>
+                    </div>
+                </li>
+                <!--ACCOUNT-->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccount"
+                        aria-expanded="true" aria-controls="collapseAccount">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                        <span>ACCOUNTS</span>
+                    </a>
+                    <div id="collapseAccount" class="collapse" aria-labelledby="headingAccount"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="chartofaccount">Chart of Account</a>
+                            <a class="collapse-item" href="openingbalance">Opening Balance</a>
+                            <a class="collapse-item" href="supplierpayment">Supplier Payment</a>
+                            <a class="collapse-item" href="costumerreceive">Costumer Receive</a>
+                            <a class="collapse-item" href="cashadjusment">Cash Adjusment</a>
+                            <a class="collapse-item" href="debitvoucher">Debit Voucher</a>
+                            <a class="collapse-item" href="creditvoucher">Credit Voucher</a>
+                            <a class="collapse-item" href="contravoucher">Contra Voucher</a>
+                            <a class="collapse-item" href="journalvoucher">Journal Voucher</a>
+                        </div>
+                    </div>
+                </li>
+
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">
+                    USER
+                </div>
+                <!--REPORT-->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
+                        aria-expanded="true" aria-controls="collapseReport">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                        <span>REPORT</span>
+                    </a>
+                    <div id="collapseReport" class="collapse" aria-labelledby="headingReport"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="submit report">Submit Report</a>
+                        </div>
+                </li>
+
+                <hr class="sidebar-divider d-none d-md-block">
+
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+            </ul>
+
+            <!-- Start of Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!--topbar-->
+                    <%- include('../partials/topbar') %>
+                        <!-- End of Topbar -->
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid" style="margin-top: 20px ;">
+                            <div class="row">
+                                <div class="col-lg-12 mb-4">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
+                                                ADD SUPPLIER</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form action="" method="post">
+                                                <div class="row mb-3">
+                                                    <label for="supplierName" class="col-sm-2 col-form-label">Supplier
+                                                        Name</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="supplierName"
+                                                            name="supplierName" placeholder="Supplier Name ..."
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="supplierPhone" class="col-sm-2 col-form-label">Supplier
+                                                        Mobile Phone</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="supplierPhone"
+                                                            name="supplierPhone" placeholder="Supplier Phone ..."
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="supplierIdCard" class="col-sm-2 col-form-label">Supplier
+                                                        Identity Card</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="number" class="form-control" id="supplierIdCard"
+                                                            name="supplierIdCard"
+                                                            placeholder="Supplier Identity Card Number ..." required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="supplierNPWP" class=" col-sm-2 col-form-label">Supplier
+                                                        NPWP</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="number" class="form-control" id="supplierNPWP"
+                                                            name=" supplierNPWP" placeholder=" Supplier NPWP Number ..."
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="supplierEmail" class=" col-sm-2 col-form-label">Supplier
+                                                        Email</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="Email" class="form-control" id="supplierEmail"
+                                                            name=" supplierEmail" placeholder=" Supplier Email ..."
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="supplierAddress"
+                                                        class="col-sm-2 col-form-label">Supplier Address</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="supplierAddress"
+                                                            name="supplierAddress" placeholder="Supplier Address ..."
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="supplierZIPCode"
+                                                        class=" col-sm-2 col-form-label">Supplier
+                                                        ZIP Code</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="number" class="form-control" id="supplierZIPCode"
+                                                            name=" supplierZIPCode" placeholder=" Supplier ZIP Code ..."
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="supplierProvince"
+                                                        class="col-sm-2 col-form-label">Supplier Province</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="supplierProvince"
+                                                            name="supplierProvince" placeholder="Supplier Province ..."
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="supplierCountry"
+                                                        class="col-sm-2 col-form-label">Supplier Country</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="supplierCountry"
+                                                            name="supplierCountry" placeholder="Supplier Country ..."
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <button type="reset" class="btn btn-warning">
+                                                        <i class="fa-solid fa-rotate-left"><span
+                                                                style="padding-left:20px ;">RESET</span></i>
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        style="float: right ;">
+                                                        <i class="fa-solid fa-floppy-disk"> <span
+                                                                style="padding-left:20px ;">Save</span></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--  End Content Row -->
+                        </div>
+                        <!-- /.container-fluid -->
+                </div>
+                <!-- End of Main Content -->
+                <!-- Footer -->
+                <%- include('../partials/footer') %>
