@@ -43,16 +43,16 @@
                     </div>
                 </li>
                 <!--COSTUMER-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCostumer"
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseCostumer"
                         aria-expanded="true" aria-controls="collapseCostumer">
                         <i class="fa-solid fa-person-chalkboard"></i>
                         <span>COSTUMER</span>
                     </a>
-                    <div id="collapseCostumer" class="collapse" aria-labelledby="headingCostumer"
+                    <div id="collapseCostumer" class="collapse show" aria-labelledby="headingCostumer"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../costumer/add">Add Costumer</a>
+                            <a class="collapse-item active" href="../costumer/add">Add Costumer</a>
                             <a class="collapse-item" href="../costumer/list">Costumer List</a>
                             <a class="collapse-item" href="../costumer/credit" id="developmentprocess">Credit
                                 Costumer</a>
@@ -65,16 +65,16 @@
                     </div>
                 </li>
                 <!--SUPPLIER-->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSupplier"
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplier"
                         aria-expanded="true" aria-controls="collapseSupplier">
                         <i class="fa-solid fa-boxes-packing"></i>
                         <span>SUPPLIER</span>
                     </a>
-                    <div id="collapseSupplier" class="collapse show" aria-labelledby="headingSupplier"
+                    <div id="collapseSupplier" class="collapse" aria-labelledby="headingSupplier"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item active" href="../supplier/add">Add Supplier</a>
+                            <a class="collapse-item" href="../supplier/add">Add Supplier</a>
                             <a class="collapse-item" href="../supplier/list">Supplier List</a>
                             <a class="collapse-item" href="../supplier/ledger" id="developmentprocess">Supplier
                                 Ledger</a>
@@ -183,7 +183,7 @@
                 <!-- Main Content -->
                 <div id="content">
                     <!--topbar-->
-                    <%- include('../partials/topbar') %>
+                    <div%- include('../partials/topbar') %>
                         <!-- End of Topbar -->
                         <!-- Begin Page Content -->
                         <div class="container-fluid" style="margin-top: 20px ;">
@@ -192,63 +192,65 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                ADD SUPPLIER</h5>
+                                                ADD COSTUMER</h5>
                                         </div>
                                         <div class="card-body">
                                             <form action="" method="post">
                                                 <div class="row mb-3">
-                                                    <label for="supplierName" class="col-sm-2 col-form-label">Supplier
+                                                    <label for="costumerName" class="col-sm-2 col-form-label">Costumer
                                                         Name</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="supplierName"
-                                                            name="supplierName" placeholder="Supplier Name ..."
+                                                        <input type="text" class="form-control" id="costumerName"
+                                                            name="CostumerName" placeholder="costumer Name ..."
                                                             required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="supplierPhone" class="col-sm-2 col-form-label">Supplier
+                                                    <label for="costumerPhone" class="col-sm-2 col-form-label">Costumer
                                                         Mobile Phone</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="supplierPhone"
-                                                            name="supplierPhone" placeholder="Supplier Phone ..."
+                                                        <input type="text" class="form-control" id="costumerPhone"
+                                                            name="CostumerPhone" placeholder="Costumer Phone ..."
                                                             required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="supplierIdCard" class="col-sm-2 col-form-label">Supplier
+                                                    <label for="costumerIdCard" class="col-sm-2 col-form-label">Costumer
                                                         Identity Card</label>
                                                     <div class="col-sm-10">
-                                                        <input type="number" class="form-control" id="supplierIdCard"
-                                                            name="supplierIdCard"
-                                                            placeholder="Supplier Identity Card Number ..." required>
+                                                        <input type="number" class="form-control" id="costumerIdCard"
+                                                            name="costumerIdCard"
+                                                            placeholder="Costumer Identity Card Number ..." required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="supplierNPWP" class=" col-sm-2 col-form-label">Supplier
-                                                        NPWP</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control" id="supplierNPWP"
-                                                            name=" supplierNPWP" placeholder=" Supplier NPWP Number ..."
-                                                            required>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierEmail" class=" col-sm-2 col-form-label">Supplier
+                                                    <label for="costumerEmail" class=" col-sm-2 col-form-label">Costumer
                                                         Email</label>
                                                     <div class="col-sm-10">
-                                                        <input type="Email" class="form-control" id="supplierEmail"
-                                                            name=" supplierEmail" placeholder=" Supplier Email ..."
+                                                        <input type="Email" class="form-control" id="costumerEmail"
+                                                            name="CostumerEmail" placeholder=" costumer Email ..."
                                                             required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="supplierAddress"
-                                                        class="col-sm-2 col-form-label">Supplier Address</label>
+                                                    <label for="costumerAddress"
+                                                        class="col-sm-2 col-form-label">Costumer Address</label>
                                                     <div class="col-sm-10">
-                                                        <textarea class="form-control" id="supplierAddress"
-                                                            name="supplierAddress"
-                                                            placeholder="Supplier Address, includes (ZIP Code) ..."
+                                                        <textarea class="form-control" id="costumerAddress"
+                                                            name="CostumerAddress"
+                                                            placeholder="costumer Address, includes (ZIP Code) ..."
                                                             cols="30" rows="5" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="costumerMember" class="col-sm-2 col-form-label">Costumer
+                                                        Member</label>
+                                                    <div class="col-sm-10">
+                                                        <select name="productStorage" id="productStorage"
+                                                            class="form-control">
+                                                            <option value="member">Member</option>
+                                                            <option value="nonMember">Non Member</option>
+                                                        </select </div>
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
@@ -259,7 +261,7 @@
                                                     <button type="submit" class="btn btn-primary"
                                                         style="float: right ;">
                                                         <i class="fa-solid fa-floppy-disk"> <span
-                                                                style="padding-left:20px ;">Save</span></i>
+                                                                style="padding-left:20px ;">SUBMIT</span></i>
                                                     </button>
                                                 </div>
                                             </form>

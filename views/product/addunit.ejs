@@ -65,16 +65,16 @@
                     </div>
                 </li>
                 <!--SUPPLIER-->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSupplier"
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplier"
                         aria-expanded="true" aria-controls="collapseSupplier">
                         <i class="fa-solid fa-boxes-packing"></i>
                         <span>SUPPLIER</span>
                     </a>
-                    <div id="collapseSupplier" class="collapse show" aria-labelledby="headingSupplier"
+                    <div id="collapseSupplier" class="collapse" aria-labelledby="headingSupplier"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item active" href="../supplier/add">Add Supplier</a>
+                            <a class="collapse-item" href="../supplier/add">Add Supplier</a>
                             <a class="collapse-item" href="../supplier/list">Supplier List</a>
                             <a class="collapse-item" href="../supplier/ledger" id="developmentprocess">Supplier
                                 Ledger</a>
@@ -84,18 +84,18 @@
                     </div>
                 </li>
                 <!--PRODUCT-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseProduct"
                         aria-expanded="true" aria-controls="collapseProduct">
                         <i class="fa-solid fa-pills"></i>
                         <span>PRODUCT</span>
                     </a>
-                    <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct"
+                    <div id="collapseProduct" class="collapse show" aria-labelledby="headingProduct"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../product/addcategory">Add Category</a>
                             <a class="collapse-item" href="../product/categorylist">Category List</a>
-                            <a class="collapse-item" href="../product/addunit">Add Unit</a>
+                            <a class="collapse-item active href=" ../product/addunit">Add Unit</a>
                             <a class="collapse-item" href="../product/unitlist">Unit List</a>
                             <a class="collapse-item" href="../product/addproduct">Add Product</a>
                             <!-- <a class="collapse-item" href="addproduct(csv)">Add Product(CSV)</a> -->
@@ -177,7 +177,6 @@
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
             </ul>
-
             <!-- Start of Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
                 <!-- Main Content -->
@@ -192,80 +191,39 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                ADD SUPPLIER</h5>
+                                                ADD UNIT</h5>
                                         </div>
                                         <div class="card-body">
                                             <form action="" method="post">
-                                                <div class="row mb-3">
-                                                    <label for="supplierName" class="col-sm-2 col-form-label">Supplier
-                                                        Name</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="supplierName"
-                                                            name="supplierName" placeholder="Supplier Name ..."
+                                                <div class="row mb-3" style="padding:100px 300px 0px ;">
+                                                    <label for="unitName" class="col-sm-3 col-form-label">Unit
+                                                        Name :</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="unitName"
+                                                            name="unitName" placeholder="Unit Name ..." required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3" style="padding: 0px 300px 100px ;">
+                                                    <label for="unitRemark" class="col-sm-3 col-form-label">Unit
+                                                        Remark :</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="unitRemark"
+                                                            name="unitRemark" placeholder="example... @box - 25pcs "
                                                             required>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierPhone" class="col-sm-2 col-form-label">Supplier
-                                                        Mobile Phone</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="supplierPhone"
-                                                            name="supplierPhone" placeholder="Supplier Phone ..."
-                                                            required>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierIdCard" class="col-sm-2 col-form-label">Supplier
-                                                        Identity Card</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control" id="supplierIdCard"
-                                                            name="supplierIdCard"
-                                                            placeholder="Supplier Identity Card Number ..." required>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierNPWP" class=" col-sm-2 col-form-label">Supplier
-                                                        NPWP</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control" id="supplierNPWP"
-                                                            name=" supplierNPWP" placeholder=" Supplier NPWP Number ..."
-                                                            required>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierEmail" class=" col-sm-2 col-form-label">Supplier
-                                                        Email</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="Email" class="form-control" id="supplierEmail"
-                                                            name=" supplierEmail" placeholder=" Supplier Email ..."
-                                                            required>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierAddress"
-                                                        class="col-sm-2 col-form-label">Supplier Address</label>
-                                                    <div class="col-sm-10">
-                                                        <textarea class="form-control" id="supplierAddress"
-                                                            name="supplierAddress"
-                                                            placeholder="Supplier Address, includes (ZIP Code) ..."
-                                                            cols="30" rows="5" required></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <button type="reset" class="btn btn-warning">
-                                                        <i class="fa-solid fa-rotate-left"><span
-                                                                style="padding-left:20px ;">RESET</span></i>
+                                                        RESET
                                                     </button>
                                                     <button type="submit" class="btn btn-primary"
                                                         style="float: right ;">
-                                                        <i class="fa-solid fa-floppy-disk"> <span
-                                                                style="padding-left:20px ;">Save</span></i>
+                                                        SUBMIT
                                                     </button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <!--  End Content Row -->

@@ -8,7 +8,6 @@ module.exports = function (db){
         try{
            res.render('dashboard/list')
         } catch (e){
-            console.log("Error at router Penjualan", e)
             res.send(e)
         }
     

@@ -6,9 +6,8 @@ var router = express.Router();
 module.exports = function (db){
     router.get('/', async function(req, res, next) {
         try{
-           res.render('sale/newsale')
+           res.render('stock/stockreport')
         } catch (e){
-            console.log("Error at router Penjualan", e)
             res.send(e)
         }
     

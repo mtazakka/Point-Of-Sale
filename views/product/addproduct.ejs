@@ -65,16 +65,16 @@
                     </div>
                 </li>
                 <!--SUPPLIER-->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSupplier"
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplier"
                         aria-expanded="true" aria-controls="collapseSupplier">
                         <i class="fa-solid fa-boxes-packing"></i>
                         <span>SUPPLIER</span>
                     </a>
-                    <div id="collapseSupplier" class="collapse show" aria-labelledby="headingSupplier"
+                    <div id="collapseSupplier" class="collapse" aria-labelledby="headingSupplier"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item active" href="../supplier/add">Add Supplier</a>
+                            <a class="collapse-item" href="../supplier/add">Add Supplier</a>
                             <a class="collapse-item" href="../supplier/list">Supplier List</a>
                             <a class="collapse-item" href="../supplier/ledger" id="developmentprocess">Supplier
                                 Ledger</a>
@@ -84,20 +84,20 @@
                     </div>
                 </li>
                 <!--PRODUCT-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseProduct"
                         aria-expanded="true" aria-controls="collapseProduct">
                         <i class="fa-solid fa-pills"></i>
                         <span>PRODUCT</span>
                     </a>
-                    <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct"
+                    <div id="collapseProduct" class="collapse show" aria-labelledby="headingProduct"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../product/addcategory">Add Category</a>
                             <a class="collapse-item" href="../product/categorylist">Category List</a>
                             <a class="collapse-item" href="../product/addunit">Add Unit</a>
                             <a class="collapse-item" href="../product/unitlist">Unit List</a>
-                            <a class="collapse-item" href="../product/addproduct">Add Product</a>
+                            <a class="collapse-item active" href="../product/addproduct">Add Product</a>
                             <!-- <a class="collapse-item" href="addproduct(csv)">Add Product(CSV)</a> -->
                             <a class="collapse-item" href="../product/manageproduct">Manage Product</a>
                         </div>
@@ -192,80 +192,106 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                ADD SUPPLIER</h5>
+                                                ADD PRODUCT</h5>
                                         </div>
                                         <div class="card-body">
-                                            <form action="" method="post">
-                                                <div class="row mb-3">
-                                                    <label for="supplierName" class="col-sm-2 col-form-label">Supplier
-                                                        Name</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="supplierName"
-                                                            name="supplierName" placeholder="Supplier Name ..."
-                                                            required>
-                                                    </div>
+                                            <form class="row g-3" id="start-form" method="post">
+                                                <div class="col-md-6">
+                                                    <label for="productqrcode" class="form-label">QR Code</label>
+                                                    <input type="text" class="form-control" id="productqrcode" readonly>
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierPhone" class="col-sm-2 col-form-label">Supplier
-                                                        Mobile Phone</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="supplierPhone"
-                                                            name="supplierPhone" placeholder="Supplier Phone ..."
-                                                            required>
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label for="harga_jual" class="form-label">Image</label>
+                                                    <input type="image" class="form-control" id="harga_jual">
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierIdCard" class="col-sm-2 col-form-label">Supplier
-                                                        Identity Card</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control" id="supplierIdCard"
-                                                            name="supplierIdCard"
-                                                            placeholder="Supplier Identity Card Number ..." required>
-                                                    </div>
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="productName" class="form-label">Product Name</label>
+                                                    <input type="text" class="form-control" id="productName">
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierNPWP" class=" col-sm-2 col-form-label">Supplier
-                                                        NPWP</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control" id="supplierNPWP"
-                                                            name=" supplierNPWP" placeholder=" Supplier NPWP Number ..."
-                                                            required>
-                                                    </div>
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="productStorage" class="form-label">Storage</label>
+                                                    <select name="productStorage" id="productStorage"
+                                                        class="form-control">
+                                                        <option>
+
+                                                        </option>
+
+                                                    </select>
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierEmail" class=" col-sm-2 col-form-label">Supplier
-                                                        Email</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="Email" class="form-control" id="supplierEmail"
-                                                            name=" supplierEmail" placeholder=" Supplier Email ..."
-                                                            required>
-                                                    </div>
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="productModel" class="form-label">Product Model</label>
+                                                    <input type="text" class="form-control" id="productModel" readonly>
                                                 </div>
-                                                <div class="row mb-3">
-                                                    <label for="supplierAddress"
-                                                        class="col-sm-2 col-form-label">Supplier Address</label>
-                                                    <div class="col-sm-10">
-                                                        <textarea class="form-control" id="supplierAddress"
-                                                            name="supplierAddress"
-                                                            placeholder="Supplier Address, includes (ZIP Code) ..."
-                                                            cols="30" rows="5" required></textarea>
-                                                    </div>
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="productCategory" class="form-label">Product
+                                                        Category</label>
+                                                    <select name="productCategory" id="productCategory"
+                                                        class="form-control">
+                                                        <option>
+
+                                                        </option>
+
+                                                    </select>
                                                 </div>
-                                                <div class="card-footer">
-                                                    <button type="reset" class="btn btn-warning">
-                                                        <i class="fa-solid fa-rotate-left"><span
-                                                                style="padding-left:20px ;">RESET</span></i>
-                                                    </button>
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="productSalePrice" class="form-label">Product Sale
+                                                        Price</label>
+                                                    <input type="text" class="form-control" id="productSalePrice"
+                                                        readonly>
+                                                </div>
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="productUnit" class="form-label">Product
+                                                        Unit</label>
+                                                    <select name="productUnit" id="productUnit"
+                                                        class="form-control"></select>
+                                                    <option>
+
+                                                    </option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label for="productRemark" class="form-label">Product Remark</label>
+                                                    <textarea name="productRemark" id="productRemark" cols="147"
+                                                        rows="2"></textarea>
+                                                </div>
+                                                <table id="detail-table" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Supplier</th>
+                                                            <th>Supplier Price</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><label for="productSupplier" class="form-label">Product
+                                                                    Supplier</label>
+                                                                <select name="productSupplier" id="productSupplier"
+                                                                    class="form-control"></select>
+                                                                <option>
+
+                                                                </option>
+
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <label for="productSupplierPrice"
+                                                                    class="form-label">Product
+                                                                    Supplier Price</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="productSupplierPrice" readonly>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="col-12">
+                                                    <button type="reset" class="btn btn-warning">RESET</button>
                                                     <button type="submit" class="btn btn-primary"
-                                                        style="float: right ;">
-                                                        <i class="fa-solid fa-floppy-disk"> <span
-                                                                style="padding-left:20px ;">Save</span></i>
-                                                    </button>
+                                                        style="float: right ;">SUBMIT</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <!--  End Content Row -->
