@@ -8,7 +8,7 @@ const { Pool } = require('pg')
 const pool = new Pool({
   user: 'tazakka',
   host: 'localhost',
-  database: 'posdb',
+  database: 'midposdb',
   password: '1234',
   port: 5432,
 })
@@ -19,12 +19,7 @@ var supplierRouter = require('./routes/supplier')(pool);
 var productRouter = require('./routes/product')(pool);
 var stockRouter = require('./routes/stock')(pool);
 var costumerRouter = require('./routes/costumer')(pool);
-// var newsaleRouter = require('./routes/newsale')(pool);
-// var supplierRouter = require('./routes/supplier')(pool);
-// var addsupplierRouter = require('./routes/supplier/addsupplier')(pool);
-// var supplierlistRouter = require('./routes/supplier/supplierlist')(pool);
-// var barangRouter = require('./routes/barang')(pool);
-// var penjualanRouter = require('./routes/penjualan')(pool);
+var userRouter = require('./routes/user')(pool);
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -45,13 +40,7 @@ app.use('/supplier', supplierRouter);
 app.use('/product', productRouter);
 app.use('/stock', stockRouter);
 app.use('/costumer', costumerRouter);
-
-// app.use('/newsale', newsaleRouter);
-// app.use('/supplier', supplierRouter);
-// app.use('/addsupplier', addsupplierRouter);
-// app.use('/supplierlist', supplierlistRouter);
-// app.use('/barang', barangRouter);
-// app.use('/penjualan', penjualanRouter);
+app.use('/user', userRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

@@ -65,17 +65,17 @@
                     </div>
                 </li>
                 <!--SUPPLIER-->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSupplier"
+                <li class="nav-item">
+                    <a class="nav-link collapsed href=" #" data-toggle="collapse" data-target="#collapseSupplier"
                         aria-expanded="true" aria-controls="collapseSupplier">
                         <i class="fa-solid fa-boxes-packing"></i>
                         <span>SUPPLIER</span>
                     </a>
-                    <div id="collapseSupplier" class="collapse show" aria-labelledby="headingSupplier"
+                    <div id="collapseSupplier" class="collapse" aria-labelledby="headingSupplier"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../supplier/add">Add Supplier</a>
-                            <a class="collapse-item active" href="../supplier/list">Supplier List</a>
+                            <a class="collapse-item" href="../supplier/list">Supplier List</a>
                             <a class="collapse-item" href="../supplier/ledger" id="developmentprocess">Supplier
                                 Ledger</a>
                             <a class="collapse-item" href="../supplier/advancer" id="developmentprocess">Supplier
@@ -84,13 +84,13 @@
                     </div>
                 </li>
                 <!--PRODUCT-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseProduct"
                         aria-expanded="true" aria-controls="collapseProduct">
                         <i class="fa-solid fa-pills"></i>
                         <span>PRODUCT</span>
                     </a>
-                    <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct"
+                    <div id="collapseProduct" class="collapse show" aria-labelledby="headingProduct"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../product/addcategory">Add Category</a>
@@ -98,7 +98,7 @@
                             <a class="collapse-item" href="../product/addunit">Add Unit</a>
                             <a class="collapse-item" href="../product/unitlist">Unit List</a>
                             <a class="collapse-item" href="../product/addstorage">Add Storage</a>
-                            <a class="collapse-item" href="../product/storagelist">Storage List</a>
+                            <a class="collapse-item acttive" href="../product/storagelist">Storage List</a>
                             <a class="collapse-item" href="../product/addproduct">Add Product</a>
                             <a class="collapse-item" href="../product/manageproduct">Manage Product</a>
                         </div>
@@ -192,18 +192,14 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                SUPPLIER LIST</h5>
+                                                UNIT LIST</h5>
                                         </div>
                                         <div class="card-body">
-                                            <table id="supplierlist" class="table table-striped" style="width:100%">
+                                            <table id="categorylist" class="table table-striped" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>No.</th>
+                                                        <th>ID Unit</th>
                                                         <th>Name</th>
-                                                        <th>Mobile Phone</th>
-                                                        <th>Tax Identification Number</th>
-                                                        <th>E-mail</th>
-                                                        <th>Address</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -217,24 +213,12 @@
                                                                 <%= item.name %>
                                                             </td>
                                                             <td>
-                                                                <%= item.phone %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.tin %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.email %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.address %>
-                                                            </td>
-                                                            <td>
-                                                                <a href="edit/<%= item.id %>">
+                                                                <a href="editstorage/<%= item.id %>">
                                                                     <i class="fa-solid fa-pen-to-square"
                                                                         style="color:orange;margin-left: 15px ;"
                                                                         title="Click here to edit!"></i>
                                                                 </a>
-                                                                <a href="delete/<%= item.id %>">
+                                                                <a href="deletestorage/<%= item.id %>">
                                                                     <i class="fa-solid fa-trash"
                                                                         style="color:red; margin-left: 15px ;"
                                                                         title="Click here to delete!"></i>
@@ -260,7 +244,7 @@
                 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
                 <script>
                     $(document).ready(function () {
-                        $('#supplierlist').dataTable();
+                        $('#categorylist').dataTable();
                     });
                 </script>
 

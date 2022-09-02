@@ -97,8 +97,9 @@
                             <a class="collapse-item active" href="../product/categorylist">Category List</a>
                             <a class="collapse-item" href="../product/addunit">Add Unit</a>
                             <a class="collapse-item" href="../product/unitlist">Unit List</a>
+                            <a class="collapse-item" href="../product/addstorage">Add Storage</a>
+                            <a class="collapse-item" href="../product/storagelist">Storage List</a>
                             <a class="collapse-item" href="../product/addproduct">Add Product</a>
-                            <!-- <a class="collapse-item" href="addproduct(csv)">Add Product(CSV)</a> -->
                             <a class="collapse-item" href="../product/manageproduct">Manage Product</a>
                         </div>
                     </div>
@@ -166,9 +167,9 @@
                     <div id="collapseReport" class="collapse" aria-labelledby="headingReport"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../user/add/">Add User</a>
+                            <a class="collapse-item" href="../user/add">Add User</a>
                             <a class="collapse-item" href="../user/list">User List</a>
-                            <a class="collapse-item" href="../user/submitreport">Submit Report</a>
+                            <a class="collapse-item" href="../user/submiterror">Submit Error</a>
                         </div>
                     </div>
                 </li>
@@ -197,13 +198,34 @@
                                             <table id="categorylist" class="table table-striped" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>No.</th>
                                                         <th>ID Category</th>
                                                         <th>Name</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody style="margin:auto ;">
+                                                    <% data.forEach((item, index)=> { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= item.id %>
+                                                            </td>
+                                                            <td>
+                                                                <%= item.name %>
+                                                            </td>
+                                                            <td>
+                                                                <a href="editcategory/<%= item.id %>">
+                                                                    <i class="fa-solid fa-pen-to-square"
+                                                                        style="color:orange;margin-left: 15px ;"
+                                                                        title="Click here to edit!"></i>
+                                                                </a>
+                                                                <a href="deletecategory/<%= item.id %>">
+                                                                    <i class="fa-solid fa-trash"
+                                                                        style="color:red; margin-left: 15px ;"
+                                                                        title="Click here to delete!"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <%})%>
                                                 </tbody>
                                             </table>
                                         </div>

@@ -1,4 +1,4 @@
-<%- include('../partials/headerlist') %>
+<%- include('../partials/header') %>
 
     <body id="page-top">
         <!-- Start of Page Wrapper -->
@@ -65,17 +65,17 @@
                     </div>
                 </li>
                 <!--SUPPLIER-->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSupplier"
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplier"
                         aria-expanded="true" aria-controls="collapseSupplier">
                         <i class="fa-solid fa-boxes-packing"></i>
                         <span>SUPPLIER</span>
                     </a>
-                    <div id="collapseSupplier" class="collapse show" aria-labelledby="headingSupplier"
+                    <div id="collapseSupplier" class="collapse" aria-labelledby="headingSupplier"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../supplier/add">Add Supplier</a>
-                            <a class="collapse-item active" href="../supplier/list">Supplier List</a>
+                            <a class="collapse-item" href="../supplier/list">Supplier List</a>
                             <a class="collapse-item" href="../supplier/ledger" id="developmentprocess">Supplier
                                 Ledger</a>
                             <a class="collapse-item" href="../supplier/advancer" id="developmentprocess">Supplier
@@ -158,18 +158,18 @@
                 <hr class="sidebar-divider">
 
                 <!--USER-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseReport"
                         aria-expanded="true" aria-controls="collapseReport">
                         <i class="fa-solid fa-money-bill-wave"></i>
                         <span>USER</span>
                     </a>
-                    <div id="collapseReport" class="collapse" aria-labelledby="headingReport"
+                    <div id="collapseReport" class="collapse show" aria-labelledby="headingReport"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../user/add">Add User</a>
                             <a class="collapse-item" href="../user/list">User List</a>
-                            <a class="collapse-item" href="../user/submiterror">Submit Error</a>
+                            <a class="collapse-item active" href="../user/submiterror">Submit Error</a>
                         </div>
                     </div>
                 </li>
@@ -178,12 +178,13 @@
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
             </ul>
+
             <!-- Start of Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
                 <!-- Main Content -->
                 <div id="content">
                     <!--topbar-->
-                    <%- include('../partials/topbar') %>
+                    <div%- include('../partials/topbar') %>
                         <!-- End of Topbar -->
                         <!-- Begin Page Content -->
                         <div class="container-fluid" style="margin-top: 20px ;">
@@ -192,60 +193,56 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                SUPPLIER LIST</h5>
+                                                SUBMIT ERROR</h5>
                                         </div>
                                         <div class="card-body">
-                                            <table id="supplierlist" class="table table-striped" style="width:100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>Name</th>
-                                                        <th>Mobile Phone</th>
-                                                        <th>Tax Identification Number</th>
-                                                        <th>E-mail</th>
-                                                        <th>Address</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="margin:auto ;">
-                                                    <% data.forEach((item, index)=> { %>
-                                                        <tr>
-                                                            <td>
-                                                                <%= item.id %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.name %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.phone %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.tin %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.email %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.address %>
-                                                            </td>
-                                                            <td>
-                                                                <a href="edit/<%= item.id %>">
-                                                                    <i class="fa-solid fa-pen-to-square"
-                                                                        style="color:orange;margin-left: 15px ;"
-                                                                        title="Click here to edit!"></i>
-                                                                </a>
-                                                                <a href="delete/<%= item.id %>">
-                                                                    <i class="fa-solid fa-trash"
-                                                                        style="color:red; margin-left: 15px ;"
-                                                                        title="Click here to delete!"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <%})%>
-                                                </tbody>
-                                            </table>
+                                            <form action="" method="post">
+                                                <div class="row mb-3">
+                                                    <label for="errorUserName" class="col-sm-2 col-form-label">User
+                                                        Name</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="errorUserName"
+                                                            name="errorUserName" placeholder="Username ..." required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="errorUserEmail" class=" col-sm-2 col-form-label">User
+                                                        Email</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="Email" class="form-control" id="errorUserEmail"
+                                                            name="errorUserEmail" placeholder="User email ..." required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="errorTitle" class="col-sm-2 col-form-label">Error
+                                                        Title</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="errorTitle"
+                                                            name="errorTitle" placeholder="Error title ..." required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="errorDescription" class="col-sm-2 col-form-label">Error
+                                                        Descripton</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea class="form-control" id="errorDescription"
+                                                            name="errorDescription"
+                                                            placeholder="Type the detail of error ..." cols="30"
+                                                            rows="5" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <button type="reset" class="btn btn-warning">
+                                                        RESET
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary" style="float: right;">
+                                                        SEND
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                             <!--  End Content Row -->
@@ -253,15 +250,15 @@
                         <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->
-                <!-- Footer -->
-                <!--DataTables-->
-                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-                <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
                 <script>
                     $(document).ready(function () {
-                        $('#supplierlist').dataTable();
-                    });
+                        $('#userPassword, #userConfirmPassword').on('keyup', function () {
+                            if ($('#userPassword').val() == $('#userConfirmPassword').val()) {
+                                $('#userConfirmPassword').html('Matching').css('color', 'green');
+                            } else
+                                $('#userConfirmPassword').html('Not Matching').css('color', 'red');
+                        });
+                    })
                 </script>
-
-                <%- include('../partials/footerlist') %>
+                <!-- Footer -->
+                <%- include('../partials/footer') %>
