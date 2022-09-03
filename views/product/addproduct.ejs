@@ -100,6 +100,8 @@
                             <a class="collapse-item" href="../product/addstorage">Add Storage</a>
                             <a class="collapse-item" href="../product/storagelist">Storage List</a>
                             <a class="collapse-item active" href="../product/addproduct">Add Product</a>
+                            <a class="collapse-item" href="../product/productlist">Product List</a>
+                            <a class="collapse-item" href="../product/addproductvariant">Add Product Variant</a>
                             <a class="collapse-item" href="../product/manageproduct">Manage Product</a>
                         </div>
                     </div>
@@ -195,108 +197,26 @@
                                                 ADD PRODUCT</h5>
                                         </div>
                                         <div class="card-body">
-                                            <form class="row g-3" id="start-form" method="post">
-                                                <div class="col-md-6">
-                                                    <label for="productQrcode" class="form-label">QR Code</label>
-                                                    <input type="text" class="form-control" id="productQrcode" required>
+                                            <form action="" method="post">
+                                                <div class="row mb-3" style="padding:100px 300px 100px ;">
+                                                    <label for="productName" class="col-sm-3 col-form-label">Product
+                                                        Name :</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="productName"
+                                                            name="productName" placeholder="Product Name ..." required>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <label for="productImage" class="form-label">Image</label>
-                                                    <input type="image" class="form-control" id="productImage" required>
+                                                <div class="card-footer">
+                                                    <button type="reset" class="btn btn-warning">
+                                                        RESET
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        style="float: right ;">
+                                                        SUBMIT
+                                                    </button>
                                                 </div>
-                                                <div class="col-md-6" style="margin-top:15px ;">
-                                                    <label for="productName" class="form-label">Product Name</label>
-                                                    <input type="text" class="form-control" id="productName" required>
-                                                </div>
-                                                <div class="col-md-6" style="margin-top:15px ;">
-                                                    <label for="productStorage" class="form-label">Storage</label>
-                                                    <select name="productStorage" id="productStorage"
-                                                        class="form-control" required>
-                                                        <option>
-
-                                                        </option>
-
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6" style="margin-top:15px ;">
-                                                    <label for="productModel" class="form-label">Product Model</label>
-                                                    <input type="text" class="form-control" id="productModel" required>
-                                                </div>
-                                                <div class="col-md-6" style="margin-top:15px ;">
-                                                    <label for="productCategory" class="form-label">Product
-                                                        Category</label>
-                                                    <select name="productCategory" id="productCategory"
-                                                        class="form-control" required>
-                                                        <option>
-
-                                                        </option>
-
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-5" style="margin-top:15px ;">
-                                                    <label for="productSalePrice" class="form-label">Product Sale
-                                                        Price</label>
-                                                    <input type="text" class="form-control" id="productSalePrice"
-                                                        required>
-                                                </div>
-                                                <div class="col-md-2" style="margin-top:15px ;">
-                                                    <label for="productQty" class="form-label">Qty.</label>
-                                                    <input type="number" class="form-control" id="productQty" required>
-                                                </div>
-                                                <div class="col-md-5" style="margin-top:15px ;">
-                                                    <label for="productUnit" class="form-label">Product
-                                                        Unit</label>
-                                                    <select name="productUnit" id="productUnit" class="form-control"
-                                                        required>
-                                                        <option>
-
-                                                        </option>
-
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-12" style="margin-top:15px; margin-bottom: 20px;">
-                                                    <label for="productRemark" class="form-label">Product Remark</label>
-                                                    <input type="text" class="form-control" id="productRemark">
-                                                </div>
-                                                <table id="detail-table" class="table">
-                                                    <thead style="text-align:center ;">
-                                                        <tr>
-                                                            <th>Supplier</th>
-                                                            <th>Supplier Price</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><label for="productSupplier" class="form-label">Product
-                                                                    Supplier</label>
-                                                                <select name="productSupplier" id="productSupplier"
-                                                                    class="form-control" required></select>
-                                                                <option>
-
-                                                                </option>
-
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <label for="productSupplierPrice"
-                                                                    class="form-label">Product
-                                                                    Supplier Price</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="productSupplierPrice" required>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                            </form>
                                         </div>
-                                        <div class="card-footer">
-                                            <button type="reset" class="btn btn-warning">
-                                                RESET
-                                            </button>
-                                            <button type="submit" class="btn btn-primary" style="float: right ;">
-                                                SUBMIT
-                                            </button>
-                                        </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -99,7 +99,10 @@
                             <a class="collapse-item" href="../product/unitlist">Unit List</a>
                             <a class="collapse-item" href="../product/addstorage">Add Storage</a>
                             <a class="collapse-item" href="../product/storagelist">Storage List</a>
-                            <a class="collapse-item active" href="../product/addproduct">Add Product</a>
+                            <a class="collapse-item" href="../product/addproduct">Add Product</a>
+                            <a class="collapse-item" href="../../product/productlist">Product List</a>
+                            <a class="collapse-item active" href="../../product/addproductvariant">Add Product
+                                Variant</a>
                             <a class="collapse-item" href="../product/manageproduct">Manage Product</a>
                         </div>
                     </div>
@@ -192,71 +195,94 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                ADD PRODUCT</h5>
+                                                ADD PRODUCT VARIANT</h5>
                                         </div>
                                         <div class="card-body">
                                             <form class="row g-3" id="start-form" method="post">
                                                 <div class="col-md-6">
-                                                    <label for="productQrcode" class="form-label">QR Code</label>
-                                                    <input type="text" class="form-control" id="productQrcode" required>
+                                                    <label for="productVariantQrcode" class="form-label">QR Code</label>
+                                                    <input type="text" class="form-control" id="productVariantQrcode"
+                                                        required>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="productImage" class="form-label">Image</label>
-                                                    <input type="image" class="form-control" id="productImage" required>
+                                                    <label for="productVariantImage" class="form-label">Image</label>
+                                                    <input type="file" class="form-control form-control-sm"
+                                                        style=" padding-bottom: 33px" id="productVariantImage" required>
                                                 </div>
                                                 <div class="col-md-6" style="margin-top:15px ;">
-                                                    <label for="productName" class="form-label">Product Name</label>
-                                                    <input type="text" class="form-control" id="productName" required>
-                                                </div>
-                                                <div class="col-md-6" style="margin-top:15px ;">
-                                                    <label for="productStorage" class="form-label">Storage</label>
-                                                    <select name="productStorage" id="productStorage"
-                                                        class="form-control" required>
-                                                        <option>
-
-                                                        </option>
-
+                                                    <label for="productName" class="form-label">Product
+                                                        Name</label>
+                                                    <select name="productName" id="productName" class="form-control">
+                                                        <option value="" disabled selected> Choose ...</option>
+                                                        <% dataProduct.forEach((item, index)=> { %>
+                                                            <option value="<%= item.id %>">
+                                                                <%= item.name %>
+                                                            </option>
+                                                            <% }) %>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6" style="margin-top:15px ;">
-                                                    <label for="productModel" class="form-label">Product Model</label>
-                                                    <input type="text" class="form-control" id="productModel" required>
+                                                    <label for="productVariantStorage"
+                                                        class="form-label">Storage</label>
+                                                    <select name="productVariantStorage" id="productVariantStorage"
+                                                        class="form-control" required>
+                                                        <option value="" disabled selected> Choose ...</option>
+                                                        <% dataStorage.forEach((item, index)=> { %>
+                                                            <option value="<%= item.id %>">
+                                                                <%= item.name %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
                                                 </div>
                                                 <div class="col-md-6" style="margin-top:15px ;">
-                                                    <label for="productCategory" class="form-label">Product
+                                                    <label for="productVariantName" class="form-label">Variant
+                                                        Name</label>
+                                                    <input type="text" class="form-control" id="productVariantName..."
+                                                        placeholder="..." required>
+                                                </div>
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="productVariantCategory"
+                                                        class="form-label">productVariant
                                                         Category</label>
-                                                    <select name="productCategory" id="productCategory"
+                                                    <select name="productVariantCategory" id="productVariantCategory"
                                                         class="form-control" required>
-                                                        <option>
-
-                                                        </option>
-
+                                                        <option value="" disabled selected> Choose ...</option>
+                                                        <% dataCategory.forEach ((item, index)=> {%>
+                                                            <option value="<%= item.id %>">
+                                                                <%=item.name %>
+                                                            </option>
+                                                            <% }) %>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-5" style="margin-top:15px ;">
-                                                    <label for="productSalePrice" class="form-label">Product Sale
+                                                    <label for="productVariantSalePrice" class="form-label">Variant Sale
                                                         Price</label>
-                                                    <input type="text" class="form-control" id="productSalePrice"
-                                                        required>
+                                                    <input type="text" class="form-control" id="productVariantSalePrice"
+                                                        placeholder="..." required>
                                                 </div>
                                                 <div class="col-md-2" style="margin-top:15px ;">
-                                                    <label for="productQty" class="form-label">Qty.</label>
-                                                    <input type="number" class="form-control" id="productQty" required>
+                                                    <label for="productVariantQty" class="form-label">Qty.</label>
+                                                    <input type="number" class="form-control" id="productVariantQty"
+                                                        placeholder="..." required>
                                                 </div>
                                                 <div class="col-md-5" style="margin-top:15px ;">
-                                                    <label for="productUnit" class="form-label">Product
+                                                    <label for="productVariantUnit" class="form-label">Variant
                                                         Unit</label>
-                                                    <select name="productUnit" id="productUnit" class="form-control"
-                                                        required>
-                                                        <option>
-
-                                                        </option>
-
+                                                    <select name="productVariantUnit" id="productVariantUnit"
+                                                        class="form-control" required>
+                                                        <option value="" disabled selected> Choose ...</option>
+                                                        <% dataUnit.forEach ((item, index)=> {%>
+                                                            <option value="<%= item.id %>">
+                                                                <%= item.name %>
+                                                            </option>
+                                                            <% }) %>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-12" style="margin-top:15px; margin-bottom: 20px;">
-                                                    <label for="productRemark" class="form-label">Product Remark</label>
-                                                    <input type="text" class="form-control" id="productRemark">
+                                                    <label for="productVariantRemarks" class="form-label">Variant
+                                                        Remark</label>
+                                                    <input type="text" class="form-control" id="productVariantRemark"
+                                                        placeholder="...">
                                                 </div>
                                                 <table id="detail-table" class="table">
                                                     <thead style="text-align:center ;">
@@ -270,11 +296,14 @@
                                                             <td><label for="productSupplier" class="form-label">Product
                                                                     Supplier</label>
                                                                 <select name="productSupplier" id="productSupplier"
-                                                                    class="form-control" required></select>
-                                                                <option>
-
-                                                                </option>
-
+                                                                    class="form-control" required>
+                                                                    <option value="" disabled selected> Choose ...
+                                                                    </option>
+                                                                    <% dataSupplier.forEach((item, index)=> { %>
+                                                                        <option value="<%= item.id %>">
+                                                                            <%= item.name %>
+                                                                        </option>
+                                                                        <% }) %>
                                                                 </select>
                                                             </td>
                                                             <td>
@@ -282,7 +311,8 @@
                                                                     class="form-label">Product
                                                                     Supplier Price</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="productSupplierPrice" required>
+                                                                    id="productSupplierPrice"
+                                                                    placeholder="fill the nominal Rp..." required>
                                                             </td>
                                                         </tr>
                                                     </tbody>
