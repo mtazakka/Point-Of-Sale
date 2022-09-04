@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const fileUpload = require('express-fileupload');
 
 const { Pool } = require('pg')
 const pool = new Pool({
@@ -20,6 +21,7 @@ var productRouter = require('./routes/product')(pool);
 var stockRouter = require('./routes/stock')(pool);
 var costumerRouter = require('./routes/costumer')(pool);
 var userRouter = require('./routes/user')(pool);
+var saleRouter = require('./routes/sale')(pool);
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -33,6 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
 
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
@@ -41,6 +44,7 @@ app.use('/product', productRouter);
 app.use('/stock', stockRouter);
 app.use('/costumer', costumerRouter);
 app.use('/user', userRouter);
+app.use('/sale', saleRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

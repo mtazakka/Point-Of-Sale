@@ -27,16 +27,16 @@
                     INTERFACE
                 </div>
                 <!--SALE-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSale"
-                        aria-expanded="true" aria-controls="collapseSale">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSale" aria-expanded="true"
+                        aria-controls="collapseSale">
                         <i class="fa-solid fa-scale-balanced"></i>
                         <span>SALE</span>
                     </a>
-                    <div id="collapseSale" class="collapse" aria-labelledby="headingSale"
+                    <div id="collapseSale" class="collapse show" aria-labelledby="headingSale"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../sale/new">New Sale</a>
+                            <a class="collapse-item active" href="../sale/new">New Sale</a>
                             <a class="collapse-item" href="../sale/manage">Manage Sale</a>
                             <a class="collapse-item" href="../sale/pos">POS Sale</a>
                         </div>
@@ -66,7 +66,7 @@
                 </li>
                 <!--SUPPLIER-->
                 <li class="nav-item">
-                    <a class="nav-link collapsed href=" #" data-toggle="collapse" data-target="#collapseSupplier"
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplier"
                         aria-expanded="true" aria-controls="collapseSupplier">
                         <i class="fa-solid fa-boxes-packing"></i>
                         <span>SUPPLIER</span>
@@ -84,13 +84,13 @@
                     </div>
                 </li>
                 <!--PRODUCT-->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseProduct"
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
                         aria-expanded="true" aria-controls="collapseProduct">
                         <i class="fa-solid fa-pills"></i>
                         <span>PRODUCT</span>
                     </a>
-                    <div id="collapseProduct" class="collapse show" aria-labelledby="headingProduct"
+                    <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../product/addcategory">Add Category</a>
@@ -100,9 +100,10 @@
                             <a class="collapse-item" href="../product/addstorage">Add Storage</a>
                             <a class="collapse-item" href="../product/storagelist">Storage List</a>
                             <a class="collapse-item" href="../product/addproduct">Add Product</a>
-                            <a class="collapse-item" href="../product/productlist">Product List</a>
-                            <a class="collapse-item" href="../product/addproductvariant">Add Product Variant</a>
-                            <a class="collapse-item active" href="../product/manageproduct">Manage Product</a>
+                            <a class="collapse-item" href="../../product/productlist">Product List</a>
+                            <a class="collapse-item" href="../../product/addproductvariant">Add Product
+                                Variant</a>
+                            <a class="collapse-item" href="../product/manageproduct">Manage Product</a>
                         </div>
                     </div>
                 </li>
@@ -194,97 +195,131 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                MANAGE PRODUCT</h5>
-                                        </div>
-                                        <div class="d-sm-flex align-items-center justify-content-between mb-4"
-                                            style="margin:20px 0px 0px 10px;">
-                                            <a href="possale"
-                                                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">UPDATE
-                                                STOCK</a>
+                                                ADD NEW SALE TRANSACTION</h5>
                                         </div>
                                         <div class="card-body">
-                                            <table id="categorylist" class="display nowrap" style="width:100%;">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>QR Code</th>
-                                                        <th>Product Name</th>
-                                                        <th>Variant Name</th>
-                                                        <th>Category</th>
-                                                        <th>Storage</th>
-                                                        <th>Sale Price</th>
-                                                        <th>Stock</th>
-                                                        <th>Unit</th>
-                                                        <th>Suplier Name</th>
-                                                        <th>Supplier Price</th>
-                                                        <th>Image</th>
-                                                        <th>Remarks</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="margin:auto ;" encType="multipart/form-data">
-                                                    <% dataVariant.forEach((item, index)=> { %>
-                                                        <tr>
-                                                            <td style="text-align:center ;">
-                                                                <%= item.id %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.qrcode %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.product_name %>
-                                                            </td>
-                                                            <td>
+                                            <form class="row g-3" id="start-form" method="post">
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="productName" class="form-label">Product
+                                                        Name</label>
+                                                    <select name="productName" id="productName" class="form-control">
+                                                        <option value="" disabled selected> Choose ...</option>
+                                                        <% dataProduct.forEach((item, index)=> { %>
+                                                            <option value="<%= item.id %>">
                                                                 <%= item.name %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.category_name %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.storage_name %>
-                                                            </td>
-                                                            <td style="text-align:right ;">
-                                                                <%= currencyFormatter.format(item.sale_price) %>
-                                                            </td>
-                                                            <td style="text-align:right ;">
-                                                                <%= item.stock %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.unit_name %>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.supplier_name %>
-                                                            </td>
-                                                            <td style="text-align:right ;">
-                                                                <%= currencyFormatter.format(item.supplier_price) %>
-                                                            </td>
-                                                            <td>
-                                                                <a target="_blank"
-                                                                    href="/uploads/imagevariant/<%= item.image %>">
-                                                                    <img src=" /uploads/imagevariant/<%=item.image %>"
-                                                                        width="50" title="Click to preview image">
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                <%= item.remarks %>
-                                                            </td>
-                                                            <td>
-                                                                <a href="editvariant/<%= item.id %>">
-                                                                    <i class="fa-solid fa-pen-to-square"
-                                                                        style="color:orange;margin-left: 15px ;"
-                                                                        title="Click here to edit!"></i>
-                                                                </a>
-                                                                <a href="deletevariant/<%= item.id %>">
-                                                                    <i class="fa-solid fa-trash"
-                                                                        style="color:red; margin-left: 15px ;"
-                                                                        title="Click here to delete!"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <%})%>
-                                                </tbody>
-                                            </table>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="variantStorage" class="form-label">Storage</label>
+                                                    <select name="variantStorage" id="variantStorage"
+                                                        class="form-control" required>
+                                                        <option value="" disabled selected> Choose ...</option>
+                                                        <% dataStorage.forEach((item, index)=> { %>
+                                                            <option value="<%= item.id %>">
+                                                                <%= item.name %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="variantName" class="form-label">Variant
+                                                        Name</label>
+                                                    <input type="text" class="form-control" id="variantName"
+                                                        name="variantName" placeholder="..." required>
+                                                </div>
+                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                    <label for="variantCategory" class="form-label">Variant
+                                                        Category</label>
+                                                    <select name="variantCategory" id="variantCategory"
+                                                        class="form-control" required>
+                                                        <option value="" disabled selected> Choose ...</option>
+                                                        <% dataCategory.forEach ((item, index)=> {%>
+                                                            <option value="<%= item.id %>">
+                                                                <%=item.name %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-5" style="margin-top:15px ;">
+                                                    <label for="variantSalePrice" class="form-label">Variant Sale
+                                                        Price</label>
+                                                    <input type="text" class="form-control" id="variantSalePrice"
+                                                        name="variantSalePrice" placeholder="..." required>
+                                                </div>
+                                                <div class="col-md-2" style="margin-top:15px ;">
+                                                    <label for="variantStock" class="form-label">Stock.</label>
+                                                    <input type="number" class="form-control" id="variantStock"
+                                                        name="variantStock" placeholder="..." required>
+                                                </div>
+                                                <div class="col-md-5" style="margin-top:15px ;">
+                                                    <label for="variantUnit" class="form-label">Variant
+                                                        Unit</label>
+                                                    <select name="variantUnit" id="variantUnit" class="form-control"
+                                                        required>
+                                                        <option value="" disabled selected> Choose ...</option>
+                                                        <% dataUnit.forEach ((item, index)=> {%>
+                                                            <option value="<%= item.id %>">
+                                                                <%= item.name %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-12" style="margin-top:15px; margin-bottom: 20px;">
+                                                    <label for="variantRemarks" class="form-label">Variant
+                                                        Remarks</label>
+                                                    <input type="text" class="form-control" id="variantRemarks"
+                                                        name="variantRemarks" placeholder="...">
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-primary">Add</button>
+                                                </div>
+                                            </form>
                                         </div>
+                                        <table id="detail-table" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>ID Variant</th>
+                                                    <th>Variant Name</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
+                                                    <th>Total Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                        <div class="card-footer">
+                                            <form>
+                                                <div class="row mb-3">
+                                                    <label for="total_harga" class="col-sm-2 col-form-label">Total
+                                                        Harga</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="total_harga"
+                                                            readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="total_bayar" class="col-sm-2 col-form-label">Total
+                                                        Bayar</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="total_bayar">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="kembalian"
+                                                        class="col-sm-2 col-form-label">Kembalian</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="kembalian" readonly>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Selesai</button>
+                                            </form>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -293,17 +328,9 @@
                         <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->
-                <!-- Footer -->
-                <!--DataTables-->
                 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-                <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
                 <script>
-                    $(document).ready(function () {
-                        $('#categorylist').dataTable({
-                            "scrollX": true
-                        });
-                    });
-                </script>
 
+                </script>
+                <!-- Footer -->
                 <%- include('../partials/footerlist') %>
