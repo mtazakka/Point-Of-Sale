@@ -332,7 +332,7 @@ module.exports = function (db){
             await variantImage.mv(uploadPath, function(err) {
                 if (err)
                 return res.status(500).send(err);
-                const addData = `INSERT INTO PRODUCT_VARIANT(qrcode, image, idproduct, idstorage, name, idcategory, sale_price, stock, idunit, remarks, idsupplier, supplier_price) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11, $12)`
+                const addData = `INSERT INTO PRODUCT_VARIANT(qrcode, image, idproduct, idstorage, name, idcategory, price, stock, idunit, remarks, idsupplier, supplier_price) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11, $12)`
                 db.query(addData, [req.body.variantQrcode, filename, req.body.productName, req.body.variantStorage, req.body.variantName, req.body.variantCategory, req.body.variantSalePrice, req.body.variantStock, req.body.variantUnit, req.body.variantRemarks, req.body.variantSupplier, req.body.variantSupplierPrice ], (err, data) => {
                     if (err) return res.send(err)
                     res.redirect('../product/manageproduct')
@@ -343,7 +343,7 @@ module.exports = function (db){
     }});
     router.get('/manageproduct', async function(req, res, next) {
         try{ 
-            const dataVariant = await db.query('SELECT PV.id, PV.qrcode, PV.image, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.sale_price, PV.stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id')
+            const dataVariant = await db.query('SELECT PV.id, PV.qrcode, PV.image, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.price, PV.stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id')
             res.render('product/manageproduct',{
                 dataVariant: dataVariant.rows,
                 currencyFormatter
@@ -375,7 +375,7 @@ module.exports = function (db){
             const dataStorage = await db.query('SELECT * FROM STORAGE')
             const dataCategory = await db.query('SELECT * FROM CATEGORY')
             const dataUnit = await db.query('SELECT * FROM UNIT')
-            const selectData = 'SELECT PV.id, PV.qrcode, PV.image, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.sale_price, PV.stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id AND PV.id = $1'
+            const selectData = 'SELECT PV.id, PV.qrcode, PV.image, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.price, PV.stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id AND PV.id = $1'
             await db.query(selectData,[req.params.id], (err, data) => {
                 if (err) {
                 console.log('Failed to read')
@@ -411,7 +411,7 @@ module.exports = function (db){
             // await variantImage.mv(uploadPath, function(err) {
             //     if (err)
             //     return res.status(500).send(err);
-                const editData = 'UPDATE PRODUCT_VARIANT set qrcode=$1, idproduct=$2, idstorage=$3, name=$4, idcategory=$5, sale_price=$6, stock=$7, idunit=$8, remarks=$9, idsupplier=$10, supplier_price=$11 where product_variant.id = $12'
+                const editData = 'UPDATE PRODUCT_VARIANT set qrcode=$1, idproduct=$2, idstorage=$3, name=$4, idcategory=$5, price=$6, stock=$7, idunit=$8, remarks=$9, idsupplier=$10, supplier_price=$11 where product_variant.id = $12'
                 await db.query(editData, [req.body.variantQrcode, req.body.productName, req.body.variantStorage, req.body.variantName, req.body.variantCategory, req.body.variantSalePrice, req.body.variantStock, req.body.variantUnit, req.body.variantRemarks, req.body.variantSupplier, req.body.variantSupplierPrice, req.params.id], (err) => {
                     if (err) {
                     res.send(err)}
