@@ -84,19 +84,19 @@
                     </div>
                 </li>
                 <!--PRODUCT-->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseProduct"
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
                         aria-expanded="true" aria-controls="collapseProduct">
                         <i class="fa-solid fa-pills"></i>
                         <span>PRODUCT</span>
                     </a>
-                    <div id="collapseProduct" class="collapse show" aria-labelledby="headingProduct"
+                    <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../product/addcategory">Add Category</a>
                             <a class="collapse-item" href="../product/categorylist">Category List</a>
                             <a class="collapse-item" href="../product/addunit">Add Unit</a>
-                            <a class="collapse-item active" href="../product/unitlist">Unit List</a>
+                            <a class="collapse-item" href="../product/unitlist">Unit List</a>
                             <a class="collapse-item" href="../product/addstorage">Add Storage</a>
                             <a class="collapse-item" href="../product/storagelist">Storage List</a>
                             <a class="collapse-item" href="../product/addproduct">Add Product</a>
@@ -107,17 +107,17 @@
                     </div>
                 </li>
                 <!--PURCHASE-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePurchase"
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePurchase"
                         aria-expanded="true" aria-controls="collapsePurchase">
                         <i class="fa-solid fa-cart-arrow-down"></i>
                         <span>PURCHASE</span>
                     </a>
-                    <div id="collapsePurchase" class="collapse" aria-labelledby="headingPurchase"
+                    <div id="collapsePurchase" class="collapse show" aria-labelledby="headingPurchase"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../purchase/add">Add Purchase</a>
-                            <a class="collapse-item" href="../purchase/manage">Manage Purchase</a>
+                            <a class="collapse-item active" href="../purchase/manage">Manage Purchase</a>
                         </div>
                     </div>
                 </li>
@@ -194,42 +194,108 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                UNIT LIST</h5>
+                                                SALE MANAGEMENT TRANSACTION</h5>
+                                        </div>
+                                        <div class="d-sm-flex align-items-center justify-content-between mb-4"
+                                            style="margin:20px 0px 0px 10px;">
+                                            <a href="possale"
+                                                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">UPDATE
+                                                STOCK</a>
                                         </div>
                                         <div class="card-body">
-                                            <table id="categorylist" class="table table-striped" style="width:100%">
+                                            <table id="categorylist" class="table table-striped" style="width:100%;">
                                                 <thead>
                                                     <tr>
-                                                        <th>ID Unit</th>
-                                                        <th>Name</th>
+                                                        <th>No.</th>
+                                                        <th>No. Invoice</th>
+                                                        <th>Date</th>
+                                                        <th>Total Price</th>
+                                                        <th>Total Payment</th>
+                                                        <th>Cashback</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody style="margin:auto ;">
-                                                    <% data.forEach((item, index)=> { %>
+                                                <tbody>
+                                                    <% rows.forEach((item, index)=> {%>
                                                         <tr>
                                                             <td>
-                                                                <%= item.id %>
+                                                                <%= index+1 %>
+                                                            </td>
+                                                            <td>
+                                                                <a href="/sale/manage?noInvoice=<%= item.no_invoice %>">
+                                                                    <%= item.no_invoice %>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <%= moment(item.date).format('DD MMM YYYY hh:mm:ss') %>
+                                                            </td>
+                                                            <td class="right-position">
+                                                                <%= currencyFormatter.format(item.total_price) %>
+                                                            </td>
+                                                            <td class="right-position">
+                                                                <%= currencyFormatter.format(item.payment) %>
+                                                            </td>
+                                                            <td class="right-position">
+                                                                <%= currencyFormatter.format(item.cashback) %>
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-success"
+                                                                    href="/sale/show/<%= item.no_invoice %>">show</a>
+                                                            </td>
+                                                        </tr>
+                                                        <% }) %>
+                                                </tbody>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>No. Invoice</th>
+                                                    <th>Date</th>
+                                                    <th>Total Price</th>
+                                                    <th>Total Payment</th>
+                                                    <th>Cashback</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>ID Variant</th>
+                                                        <th>Variant Name</th>
+                                                        <th>Qty</th>
+                                                        <th>Price</th>
+                                                        <th>Total Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% details.forEach((item, index)=> {%>
+                                                        <tr>
+                                                            <td>
+                                                                <%= index+1 %>
+                                                            </td>
+                                                            <td>
+                                                                <%= item.idvariant %>
                                                             </td>
                                                             <td>
                                                                 <%= item.name %>
                                                             </td>
-                                                            <td>
-                                                                <a href="editunit/<%= item.id %>">
-                                                                    <i class="fa-solid fa-pen-to-square"
-                                                                        style="color:orange;margin-left: 15px ;"
-                                                                        title="Click here to edit!"></i>
-                                                                </a>
-                                                                <a href="deleteunit/<%= item.id %>">
-                                                                    <i class="fa-solid fa-trash"
-                                                                        style="color:red; margin-left: 15px ;"
-                                                                        title="Click here to delete!"></i>
-                                                                </a>
+                                                            <td class="right-position">
+                                                                <%= item.qty %>
+                                                            </td>
+                                                            <td class="right-position">
+                                                                <%= currencyFormatter.format(item.price) %>
+                                                            </td>
+                                                            <td class="right-position">
+                                                                <%= currencyFormatter.format(item.total_price) %>
                                                             </td>
                                                         </tr>
-                                                        <%})%>
+                                                        <% }) %>
                                                 </tbody>
                                             </table>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a class="btn btn-primary" href="/penjualan/add"> New Transaction</a>
                                         </div>
                                     </div>
                                 </div>
@@ -246,7 +312,9 @@
                 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
                 <script>
                     $(document).ready(function () {
-                        $('#categorylist').dataTable();
+                        $('#categorylist').dataTable({
+                            "scrollX": true
+                        });
                     });
                 </script>
 

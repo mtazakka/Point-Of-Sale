@@ -8,8 +8,9 @@ module.exports = function (db){
     //PRODUCT VARIANT
     router.get('/add', async function(req, res, next) {
         try{
-            const {rows} = await db.query('INSERT INTO sale_transaction(total_price) VALUES (0) returning *')
-            res.redirect(`/sale/show/${rows[0].no_invoice}`)
+            // const {rows} = await db.query('INSERT INTO PURCHASE_TRANSACTION(total_price) VALUES (0) returning *')
+            // res.redirect(`/purchase/show/${rows[0].id}`)
+            res.redirect(`/purchase/show/`)
         } catch (e){
             console.log("Error at router /add", e)
             res.send(e)
@@ -31,7 +32,7 @@ module.exports = function (db){
         res.send(e)
     }
     })
-    router.get('/show/:no_invoice', async function(req, res, next) {
+    router.get('/show', async function(req, res, next) {
         try{
             const dataProduct = await db.query('SELECT * FROM PRODUCT')
             const dataSupplier = await db.query('SELECT * FROM SUPPLIER')
@@ -39,9 +40,9 @@ module.exports = function (db){
             const dataCategory = await db.query('SELECT * FROM CATEGORY')
             const dataUnit = await db.query('SELECT * FROM UNIT')
             const dataProductVariant= await db.query('SELECT * FROM PRODUCT_VARIANT')
-            const saleTransaction = await db.query('SELECT * FROM SALE_TRANSACTION WHERE no_invoice = $1', [req.params.no_invoice])
+            const purchaseTransaction = await db.query('SELECT * FROM purchase_TRANSACTION WHERE id = $1', [req.params.id])
             const {rows} = await db.query('SELECT idvariant, name from PRODUCT_VARIANT ORDER BY idvariant')
-            res.render('sale/newtransaction', {
+            res.render('purchase/newtransaction', {
                 currencyFormatter,
                 dataProduct: dataProduct.rows,
                 dataSupplier: dataSupplier.rows,
@@ -49,9 +50,9 @@ module.exports = function (db){
                 dataCategory: dataCategory.rows,
                 dataUnit: dataUnit.rows,
                 dataProductVariant: dataProductVariant.rows,
-                currentPage: 'saleTransaction',
+                currentPage: 'purchaseTransaction',
                 product_variant : rows,
-                saleTransaction: saleTransaction.rows[0],
+                purchaseTransaction: purchaseTransaction.rows,
                 moment,
             })
         } catch (e){
@@ -72,10 +73,13 @@ module.exports = function (db){
             }
         
         });
+
     router.post('/additem',async function(req, res, next) {
+        console.log('testestestes',req.body.no_invoice, req.body.idvariant, req.body.qty)
         try{
-            const detail = await db.query('INSERT INTO sale_detail(no_invoice, idvariant, qty) VALUES ($1, $2, $3) returning *', [req.body.no_invoice, req.body.idvariant, req.body.qty])
-           const { rows } = await db.query('SELECT * FROM SALE_TRANSACTION WHERE no_invoice = $1', [req.body.no_invoice])
+            const detail2 = await db.query ('INSERT INTO PURCHASE_TRANSACTION(no_invoice) VALUES ($1) returning *', [req.body.no_invoice])
+            const detail = await db.query('INSERT INTO PURCHASE_DETAIL(no_invoice, idvariant, qty) VALUES ($1, $2, $3) returning *', [req.body.no_invoice, req.body.idvariant, req.body.qty])
+           const { rows } = await db.query('SELECT * FROM PURCHASE_TRANSACTION WHERE no_invoice = $1', [req.body.no_invoice])
             res.json(rows[0])            
         } catch (e){
             console.log("Error at router /additem", e)
@@ -83,22 +87,10 @@ module.exports = function (db){
         }
     
     });
-      router.post('/payment',async function(req, res, next) {
-        console.log(req.body.cashback, req.body.payment, req.body.no_invoice)
-        try{
-            const {rows} = await db.query('UPDATE SALE_TRANSACTION SET cashback=$1, payment=$2 WHERE no_invoice = $3', [req.body.cashback, req.body.payment, req.body.no_invoice])            
-            // res.redirect('/manage'),
-            res.json(rows[0])
-        } catch (e){
-            console.log("Error at router /payment", e)
-            res.send(e)
-        }
-    
-    });
 
     router.get('/details/:no_invoice', async function(req, res, next) {
             try{
-                const { rows }  = await db.query('SELECT SD.*, PV.name FROM SALE_DETAIL as SD LEFT JOIN PRODUCT_VARIANT as PV ON SD.idvariant = PV.idvariant WHERE SD.no_invoice = $1 ORDER BY SD.id', [req.params.no_invoice]);
+                const { rows }  = await db.query('SELECT SD.*, PV.name FROM PURCHASE_DETAIL as SD LEFT JOIN PRODUCT_VARIANT as PV ON SD.idvariant = PV.idvariant WHERE SD.no_invoice = $1 ORDER BY SD.id', [req.params.no_invoice]);
                 res.json(rows)
                 
             } catch (e){

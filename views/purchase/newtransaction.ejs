@@ -27,16 +27,16 @@
                     INTERFACE
                 </div>
                 <!--SALE-->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSale" aria-expanded="true"
-                        aria-controls="collapseSale">
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSale"
+                        aria-expanded="true" aria-controls="collapseSale">
                         <i class="fa-solid fa-scale-balanced"></i>
                         <span>SALE</span>
                     </a>
-                    <div id="collapseSale" class="collapse show" aria-labelledby="headingSale"
+                    <div id="collapseSale" class="collapse" aria-labelledby="headingSale"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item active" href="../../sale/add">New Sale</a>
+                            <a class="collapse-item" href="../../sale/add">New Sale</a>
                             <a class="collapse-item" href="../../sale/manage">Sale Management</a>
 
                         </div>
@@ -109,16 +109,16 @@
                     </div>
                 </li>
                 <!--PURCHASE-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePurchase"
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePurchase"
                         aria-expanded="true" aria-controls="collapsePurchase">
                         <i class="fa-solid fa-cart-arrow-down"></i>
                         <span>PURCHASE</span>
                     </a>
-                    <div id="collapsePurchase" class="collapse" aria-labelledby="headingPurchase"
+                    <div id="collapsePurchase" class="collapse show" aria-labelledby="headingPurchase"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../../purchase/add">Add Purchase</a>
+                            <a class="collapse-item active" href="../../purchase/add">Add Purchase</a>
                             <a class="collapse-item" href="../../purchase/manage">Manage Purchase</a>
                         </div>
                     </div>
@@ -196,20 +196,19 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                ADD NEW SALE TRANSACTION</h5>
+                                                ADD PURCHASE TRANSACTION</h5>
                                         </div>
                                         <div class="card-body">
                                             <form class="row g-3" id="start-form">
                                                 <div class="col-md-6">
-                                                    <label for="variantNo_invoice" class="form-label">No.
+                                                    <label for="no_invoice" class="form-label">No.
                                                         Invoice</label>
-                                                    <input type="text" class="form-control" id="VariantNo_invoice"
-                                                        value="<%= saleTransaction.no_invoice %>" readonly>
+                                                    <input type="text" class="form-control" id="no_invoice">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="variantDate" class="form-label">Date</label>
                                                     <input type="text" class="form-control" id="variantDate"
-                                                        value="<%= moment(saleTransaction.date).format('DD MMM YYYY hh:mm:ss') %>"
+                                                        value="<%= moment(purchaseTransaction.date).format('DD MMM YYYY hh:mm:ss') %>"
                                                         readonly>
                                                 </div>
                                             </form>
@@ -250,7 +249,7 @@
                                                         name="category_name" readonly>
                                                 </div>
                                                 <div class="col-md-6" style="margin-top:15px ;">
-                                                    <label for="price" class="form-label">Variant Sale
+                                                    <label for="price" class="form-label">Variant Supplier
                                                         Price</label>
                                                     <input type="text" class="form-control" id="price" name="price"
                                                         readonly>
@@ -292,7 +291,7 @@
                                                         <th>ID Variant</th>
                                                         <th>Variant Name</th>
                                                         <th>Qty</th>
-                                                        <th>Price</th>
+                                                        <th>Supplier Price</th>
                                                         <th>Total Price</th>
                                                     </tr>
                                                 </thead>
@@ -300,38 +299,6 @@
 
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        <div class="card-footer" id="payment-form">
-                                            <form>
-                                                <div class="row mb-3">
-                                                    <label for="total_price" class="col-sm-2 col-form-label">Total
-                                                        Price</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="total_price"
-                                                            value="<%= saleTransaction.total_price %>" readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="payment" class="col-sm-2 col-form-label">Total
-                                                        Payment</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="payment" value='0'>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="cashback"
-                                                        class="col-sm-2 col-form-label">Cashback</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="cashback"
-                                                            value="<%= '-'+saleTransaction.total_price %>" readonly>
-                                                    </div>
-                                                </div>
-                                                <button type="reset" class="btn btn-warning">RESET</button>
-                                                <a href="../manage">
-                                                    <button type="submit" class="btn btn-primary" style="float:right ;"
-                                                        onclick="success()">SUBMIT</button>
-                                                </a>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -343,7 +310,7 @@
                 <!-- End of Main Content -->
                 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
                 <script>
-                    let no_invoice = '<%= saleTransaction.no_invoice %>'
+                    // let no_invoice = '<%= purchaseTransaction.no_invoice %>'
                     function success() {
                         alert("Transaction Success! Please Check 'Sale Management'");
                     }
@@ -351,15 +318,15 @@
                         readDetails()
                         $('#idvariant').change(function () {
                             const idvariant = $(this).val()
-                            $.get(`/sale/product_variant/${idvariant}`).done(function (data) {
+                            $.get(`/purchase/product_variant/${idvariant}`).done(function (data) {
                                 $('#product_name').val(data.product_name)
                                 $('#storage_name').val(data.storage_name)
                                 $('#supplier_name').val(data.supplier_name)
                                 $('#category_name').val(data.category_name)
-                                $('#price').val(data.price)
+                                $('#price').val(data.supplier_price)
                                 $('#qty').val(1)
                                 $('#unit_name').val(data.unit_name)
-                                $('#total_price_item').val(data.price)
+                                $('#total_price_item').val(data.supplier_price)
                                 $('#remarks').val(data.remarks)
                             })
                         })
@@ -368,26 +335,14 @@
                             const price = parseInt($('#price').val())
                             $('#total_price_item').val(price * qty)
                         })
-                        $('#payment').keyup(function () {
-                            const payment = $(this).val()
-                            const total_price = $('#total_price').val()
-                            console.log(payment, total_price, 'cek data')
-                            $('#cashback').val(payment - total_price)
-                        })
                         $('#detail-form').submit(function (e) {
                             e.preventDefault();
+                            const no_invoice = $('#no_invoice').val()
                             const idvariant = $('#idvariant').val()
                             const qty = $('#qty').val()
-                            $.post('/sale/additem', { no_invoice, idvariant, qty }).done(function (data) {
+                            $.post('/purchase/additem', { no_invoice, idvariant, qty }).done(function (data) {
                                 readDetails()
                                 $('#total_price').val(data.total_price)
-                            })
-                        })
-                        $('#payment-form').submit(function (e) {
-                            e.preventDefault();
-                            const payment = $('#payment').val()
-                            const cashback = $('#cashback').val()
-                            $.post('/sale/payment', { payment, cashback, no_invoice }).done(function (data) {
                             })
                         })
                     })
@@ -411,7 +366,7 @@
                                         ${item.qty}
                                     </td>
                                     <td class="right-position">
-                                        ${currencyFormatter.format(item.price)}
+                                        ${currencyFormatter.format(item.supplier_price)}
                                     </td>
                                     <td class="right-position">
                                         ${currencyFormatter.format(item.total_price)}
