@@ -2,9 +2,6 @@
 Project 1
 31 Aug : Front-End Clear
 Target:
--ERD done
+PURCHASE
 -BackEnd
 -User/Admin
-Last : upload image
-- new Transaction
-TriggerFunction ERROR
