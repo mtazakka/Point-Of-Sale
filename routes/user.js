@@ -3,7 +3,10 @@ var router = express.Router();
 const fileUpload = require('express-fileupload');
 var path = require('path');
 var app = express();
+const { currencyFormatter } = require('../helpers/util')
+const moment = require ('moment')
 app.use(fileUpload());
+
 
 
 /* GET users listing. */
@@ -47,22 +50,57 @@ module.exports = function (db){
 
     router.get('/list', async function(req, res, next) {
         try{
-            res.render('user/userlist')
+            const dataEmployee = await db.query('SELECT * FROM EMPLOYEE')
+            res.render('user/userlist',{
+                dataEmployee: dataEmployee.rows,
+                currencyFormatter
+            })
         } catch (e){
             res.send(e)
         }
     
     });
-    router.get('/submiterror', async function(req, res, next) {
+    router.get('/edituser/:id', async function (req, res, next)  {
         try{
-           res.render('user/submiterror')
-        } catch (e){
-            res.send(e)
-        }
-    
-    });
+            const selectData = 'SELECT * FROM EMPLOYEE WHERE id = $1'
+            await db.query(selectData,[req.params.id], (err, data) => {
+                if (err) {
+                console.log('Failed to read')
+                throw err;
+                }
+                res.render('user/edituser', { item:data.rows[0], moment})   
+            })
+        } catch (err) {
+            res.send(err)}
+    })
+    router.post('/edituser/:id',async function (req, res, next) {
+        try{
+            const editData = 'UPDATE EMPLOYEE set name=$1, phone=$2, idcard=$3, email=$4, address=$5, status=$6, remarks=$7 where id = $8'
+            await db.query(editData, [req.body.user_name, req.body.user_phone, req.body.user_idcard, req.body.user_email, req.body.user_address, req.body.user_status, req.body.user_remarks, req.params.id], (err) => {
+                if (err) {
+                console.log('Failed to edit')
+                throw err;
+                }
+                res.redirect('../list')
+                })
+            } catch (e){
+                res.send(e)
+    }})
+    router.get('/deleteuser/:id', async function (req, res, next) {
+        try{
+            const deleteData = 'DELETE FROM EMPLOYEE WHERE id = $1'
+            await db.query(deleteData, [req.params.id], (err) => {
+                if (err) {
+                {
+                    console.log('Failed to delete')
+                    throw err
+                }
+                }
+            })
+            res.redirect('../list')
+        } catch (err) {
+            res.send(err)
+    }})
 
 return router;
 }
-        // const addData = 'INSERT INTO storage(name) values ($1)'
-        // await db.query(addData, [req.body.storageName], (err, data) => {

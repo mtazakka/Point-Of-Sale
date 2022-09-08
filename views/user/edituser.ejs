@@ -66,16 +66,16 @@
                     </div>
                 </li>
                 <!--SUPPLIER-->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSupplier"
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplier"
                         aria-expanded="true" aria-controls="collapseSupplier">
                         <i class="fa-solid fa-boxes-packing"></i>
                         <span>SUPPLIER</span>
                     </a>
-                    <div id="collapseSupplier" class="collapse show" aria-labelledby="headingSupplier"
+                    <div id="collapseSupplier" class="collapse" aria-labelledby="headingSupplier"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item active" href="../../supplier/add">Add Supplier</a>
+                            <a class="collapse-item" href="../../supplier/add">Add Supplier</a>
                             <a class="collapse-item" href="../../supplier/list">Supplier List</a>
                             <a class="collapse-item" href="../../supplier/ledger" id="developmentprocess">Supplier
                                 Ledger</a>
@@ -161,16 +161,16 @@
                 <hr class="sidebar-divider">
 
                 <!--USER-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseReport"
                         aria-expanded="true" aria-controls="collapseReport">
                         <i class="fa-solid fa-money-bill-wave"></i>
                         <span>USER</span>
                     </a>
-                    <div id="collapseReport" class="collapse" aria-labelledby="headingReport"
+                    <div id="collapseReport" class="collapse show" aria-labelledby="headingReport"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../../user/add">Add User</a>
+                            <a class="collapse-item active" href="../../user/add">Add User</a>
                             <a class="collapse-item" href="../../user/list">User List</a>
                             <a class="collapse-item" id="developmentprocess" href="../../user/submiterror">Submit
                                 Error</a>
@@ -197,58 +197,92 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                ADD SUPPLIER</h5>
+                                                ADD USER</h5>
                                         </div>
                                         <div class="card-body">
-                                            <form action="" method="post">
+                                            <form action="" method="post" encType="multipart/form-data">
                                                 <div class="row mb-3">
-                                                    <label for="supplierID" class="col-sm-2 col-form-label">Supplier
+                                                    <label for="user_id" class="col-sm-2 col-form-label">Employee
                                                         ID</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="supplierID"
-                                                            name="supplierID" value="<%= item.id %>" disabled>
+                                                        <input type="text" class="form-control" id="user_id"
+                                                            name="user_id" value="<%= item.id %>" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="supplierName" class="col-sm-2 col-form-label">Supplier
+                                                    <label for="user_date" class="col-sm-2 col-form-label">Join
+                                                        Date</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="user_date"
+                                                            name="user_date"
+                                                            value="<%= moment(item.reg_date).format( 'DD MMMM YYYY' ) %>"
+                                                            readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="user_name" class="col-sm-2 col-form-label">User
                                                         Name</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="supplierName"
-                                                            name="supplierName" value="<%= item.name %>" required>
+                                                        <input type="text" class="form-control" id="user_name"
+                                                            name="user_name" value="<%= item.name %>" required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="supplierPhone" class="col-sm-2 col-form-label">Supplier
+                                                    <label for="user_phone" class="col-sm-2 col-form-label">User
                                                         Mobile Phone</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="supplierPhone"
-                                                            name="supplierPhone" value="<%= item.phone %>" required>
+                                                        <input type="text" class="form-control" id="user_phone"
+                                                            name="user_phone" value="<%= item.phone %>" required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="supplierTIN" class=" col-sm-2 col-form-label">Supplier
-                                                        TIN</label>
+                                                    <label for="user_idcard" class="col-sm-2 col-form-label">User
+                                                        Identity Card</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="supplierTIN"
-                                                            name="supplierTIN" value="<%= item.tin %>" required>
+                                                        <input type="text" class="form-control" id="user_idcard"
+                                                            name="user_idcard" value="<%= item.idcard %>" required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="supplierEmail" class=" col-sm-2 col-form-label">Supplier
+                                                    <label for="user_email" class=" col-sm-2 col-form-label">User
                                                         Email</label>
                                                     <div class="col-sm-10">
-                                                        <input type="Email" class="form-control" id="supplierEmail"
-                                                            name="supplierEmail" value="<%= item.email %>" required>
+                                                        <input type="Email" class="form-control" id="user_email"
+                                                            name="user_email" value="<%= item.email %>" required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="supplierAddress"
-                                                        class="col-sm-2 col-form-label">Supplier Address</label>
+                                                    <label for="user_address" class="col-sm-2 col-form-label">User
+                                                        Address</label>
                                                     <div class="col-sm-10">
-                                                        <textarea class="form-control" id="supplierAddress"
-                                                            name="supplierAddress"
-                                                            placeholder="Supplier Address, includes (ZIP Code) ..."
-                                                            cols="30" rows="5" required><%= item.address %></textarea>
+                                                        <textarea class="form-control" id="user_address"
+                                                            name="user_address" cols="30" rows="5"
+                                                            required><%= item.address %></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="user_status" class="col-sm-2 col-form-label">User
+                                                        Status</label>
+                                                    <div class="col-sm-10">
+                                                        <select name="user_status" id="user_status" class="form-control"
+                                                            required>
+                                                            <option value="Admin" <%=item.status=='Admin' ? ' selected '
+                                                                : '' %>>Admin</option>
+                                                            <option value="User" <%=item.status=='User' ? ' selected '
+                                                                : '' %>>User</option>
+                                                            <option value="Employee" <%=item.status=='Employee'
+                                                                ? ' selected ' : '' %>>Employee</option>
+                                                            <option value="Non Active" <%=item.status=='Non Active'
+                                                                ? ' selected ' : '' %>>Non Active</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="user_remarks" class="col-sm-2 col-form-label">User
+                                                        Remarks</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea class="form-control" id="user_remarks"
+                                                            name="user_remarks" cols="30" rows="5"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
@@ -270,5 +304,16 @@
                         <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->
+                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('#user_password, #user_ConfirmPassword').on('keyup', function () {
+                            if ($('#user_password').val() == $('#user_ConfirmPassword').val()) {
+                                $('#user_ConfirmPassword').html('Matching').css('color', 'green');
+                            } else
+                                $('#user_ConfirmPassword').html('Not Matching').css('color', 'red');
+                        });
+                    })
+                </script>
                 <!-- Footer -->
                 <%- include('../partials/footer2') %>

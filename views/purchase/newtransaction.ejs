@@ -10,7 +10,7 @@
                     <div class="sidebar-brand-icon">
                         <i class="fa-solid fa-hospital"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">TAZAKKA<sup>ADMIN</sup>
+                    <div class="sidebar-brand-text mx-3">ASSYIFA<sup>STORE</sup>
                     </div>
                 </a>
                 <hr class="sidebar-divider my-0">
@@ -173,7 +173,8 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../../user/add">Add User</a>
                             <a class="collapse-item" href="../../user/list">User List</a>
-                            <a class="collapse-item" href="../../user/submiterror">Submit Error</a>
+                            <a class="collapse-item" id="developmentprocess" href="../../user/submiterror">Submit
+                                Error</a>
                         </div>
                     </div>
                 </li>
@@ -317,7 +318,7 @@
                     let no_invoice = '<%= purchaseTransaction.no_invoice %>';
                     let idpurchase = '<%= purchaseTransaction.id %>'
                     function success() {
-                        alert("Transaction Success! Please Check 'Sale Management'");
+                        alert("Transaction Success! Please Check 'Purchase Management'");
                     }
                     $(document).ready(function () {
                         readDetails()

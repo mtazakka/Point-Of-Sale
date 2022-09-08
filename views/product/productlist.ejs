@@ -10,7 +10,7 @@
                     <div class="sidebar-brand-icon">
                         <i class="fa-solid fa-hospital"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">TAZAKKA<sup>ADMIN</sup>
+                    <div class="sidebar-brand-text mx-3">ASSYIFA<sup>STORE</sup>
                     </div>
                 </a>
                 <hr class="sidebar-divider my-0">
@@ -171,7 +171,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../user/add">Add User</a>
                             <a class="collapse-item" href="../user/list">User List</a>
-                            <a class="collapse-item" href="../user/submiterror">Submit Error</a>
+                            <a class="collapse-item" id="developmentprocess" href="../user/submiterror">Submit Error</a>
                         </div>
                     </div>
                 </li>
@@ -217,13 +217,13 @@
                                                             <td>
                                                                 <a href="editproduct/<%= item.id %>">
                                                                     <i class="fa-solid fa-pen-to-square"
-                                                                        style="color:orange;margin-left: 15px ;"
-                                                                        title="Click here to edit!"></i>
+                                                                        style="color:orange;"
+                                                                        title="Click here to edit!"></i> Edit
                                                                 </a>
-                                                                <a href="deleteproduct/<%= item.id %>">
-                                                                    <i class="fa-solid fa-trash"
+                                                                <a href="#" onclick="alert('Please contact Developer')">
+                                                                    <i class=" fa-solid fa-trash"
                                                                         style="color:red; margin-left: 15px ;"
-                                                                        title="Click here to delete!"></i>
+                                                                        title="Click here to delete!"></i> Delete
                                                                 </a>
                                                             </td>
                                                         </tr>

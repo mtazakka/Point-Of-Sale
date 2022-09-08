@@ -10,7 +10,7 @@
                     <div class="sidebar-brand-icon">
                         <i class="fa-solid fa-hospital"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">TAZAKKA<sup>ADMIN</sup>
+                    <div class="sidebar-brand-text mx-3">ASSYIFA<sup>STORE</sup>
                     </div>
                 </a>
                 <hr class="sidebar-divider my-0">
@@ -171,7 +171,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../user/add">Add User</a>
                             <a class="collapse-item" href="../user/list">User List</a>
-                            <a class="collapse-item" href="../user/submiterror">Submit Error</a>
+                            <a class="collapse-item" id="developmentprocess" href="../user/submiterror">Submit Error</a>
                         </div>
                     </div>
                 </li>
@@ -195,12 +195,6 @@
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
                                                 SALE MANAGEMENT TRANSACTION</h5>
-                                        </div>
-                                        <div class="d-sm-flex align-items-center justify-content-between mb-4"
-                                            style="margin:20px 0px 0px 10px;">
-                                            <a href="possale"
-                                                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">UPDATE
-                                                STOCK</a>
                                         </div>
                                         <div class="card-body">
                                             <table id="categorylist" class="table table-striped" style="width:100%;">
@@ -240,8 +234,8 @@
                                                                 <%= currencyFormatter.format(item.cashback) %>
                                                             </td>
                                                             <td>
-                                                                <a class="btn btn-success"
-                                                                    href="/sale/show/<%= item.no_invoice %>">show</a>
+                                                                <a class="btn btn-warning"
+                                                                    href="/sale/show/<%= item.no_invoice %>">EDIT</a>
                                                             </td>
                                                         </tr>
                                                         <% }) %>
@@ -294,9 +288,6 @@
                                                         <% }) %>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        <div class="card-footer">
-                                            <a class="btn btn-primary" href="/penjualan/add"> New Transaction</a>
                                         </div>
                                     </div>
                                 </div>

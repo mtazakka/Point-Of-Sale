@@ -9,7 +9,7 @@
                     <div class="sidebar-brand-icon">
                         <i class="fa-solid fa-hospital"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">TAZAKKA<sup>ADMIN</sup>
+                    <div class="sidebar-brand-text mx-3">ASSYIFA<sup>STORE</sup>
                     </div>
                 </a>
                 <hr class="sidebar-divider my-0">
@@ -37,7 +37,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="sale/add">New Sale</a>
                             <a class="collapse-item" href="sale/manage">Sale Management</a>
-                            <a class="collapse-item" href="sale/pos">POS Sale</a>
+                            <a class="collapse-item" id="developmentprocess" href="sale/pos">POS Sale</a>
                         </div>
                     </div>
                 </li>
@@ -167,7 +167,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="user/add">Add User</a>
                             <a class="collapse-item" href="user/list">User List</a>
-                            <a class="collapse-item" href="user/submiterror">Submit Error</a>
+                            <a class="collapse-item" id="developmentprocess" href="user/submiterror">Submit Error</a>
                         </div>
                     </div>
                 </li>
@@ -188,12 +188,6 @@
                             <!-- Page Heading // DASHBOARD -->
                             <h1 class="h3 mb-0 text-gray-800">DASHBOARD</h1>
                             <hr>
-                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                <a href="possale" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                        class="fa-solid fa-square-plus" style="margin-top:5px ;"> <span
-                                            style="padding-left: 10px ;">POS
-                                            SALE</span></i></a>
-                            </div>
                             <!-- Content Row -->
                             <div class="row">
                                 <!-- CONTENT // TOTAL COSTUMER -->
@@ -204,8 +198,10 @@
                                                 <div class="col mr-2">
                                                     <div
                                                         class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                        Total Costumer</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">BELUM DIISI
+                                                        Total Employee</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"
+                                                        style="text-align:right">
+                                                        <%= dataEmployee.total %>
                                                     </div>
                                                 </div>
                                                 <div class="col-auto">
@@ -224,8 +220,9 @@
                                                 <div class="col mr-2">
                                                     <div
                                                         class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                        TOTAL PRODUCT</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">BELUM DIISI
+                                                        TOTAL PURCHASING</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= currencyFormatter.format(dataPurchase.total) %>
                                                     </div>
                                                 </div>
                                                 <div class="col-auto">
@@ -242,15 +239,10 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                        TOTAL SUPPLIER
+                                                        TOTAL SELLING
                                                     </div>
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                                BELUM
-                                                                DIISI
-                                                            </div>
-                                                        </div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        <%= currencyFormatter.format(dataSale.total) %>
                                                     </div>
                                                 </div>
                                                 <div class="col-auto">
@@ -268,8 +260,10 @@
                                                 <div class="col mr-2">
                                                     <div
                                                         class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                        TOTAL SALE</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">BELUM DIISI
+                                                        TOTAL INCOME</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <%= currencyFormatter.format(dataSale.total -
+                                                            dataPurchase.total) %>
                                                     </div>
                                                 </div>
                                                 <div class="col-auto">
@@ -287,113 +281,187 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                VISI -
-                                                MISI</h5>
+                                                VISION - MISION</h5>
                                         </div>
                                         <div class="card-body">
-                                            <p> <span style="font-weight:bold;">Visi</span> kami adalah <span
-                                                    style="font-weight:bold;">“Menjadi Apotek
-                                                    jaringan dengan kualitas pelayanan terbaik dan
-                                                    menjadi pilihan utama masyarakat Lampung
-                                                    dengan jumlah 30 outlet pada tahun 2023”</span></p>
-                                            <p> <span style="font-weight:bold;">Misi</span> kami adalah <span
-                                                    style="font-weight:bold;">memberikan jasa
-                                                    perdagangan dan kesehatan,
-                                                    memberikan nilai tambah kepada setiap mitra yang menjalin
-                                                    kerjasama dengan kami berdasarkan prinsip sebagai berikut:
+                                            <p> <span style="font-weight:bold;">Our Vision</span> is <span
+                                                    style="font-weight:bold;">“To become a pharmacy and medical supplier
+                                                    with the
+                                                    best service quality and become the first choice of the people of
+                                                    Lampung with a
+                                                    total of 23 outlets in 2023”</span></p>
+                                            <p> <span style="font-weight:bold;">Our Mission</span> is <span
+                                                    style="font-weight:bold;">provide trading services, provide added
+                                                    value to each partner who cooperates with us based on the following
+                                                    principles:
                                                 </span>
                                             </p>
                                             <ul>
-                                                <li>Melakukan kegiatan usaha apotek unggul (e-farmasi,
-                                                    e-konseling,telefarma,
-                                                    home care, PIO oleh apoteker, swamedikasi)</li>
-                                                <li>Mengembangkan jaringan apotek dengan konsep kemitraan yang
-                                                    saling
-                                                    menguntungkan</li>
-                                                <li>Mengembangkan warisan tradisional usadha Bali</li>
-                                                <li>Mengoptimalkan other income</li>
+                                                <li>Conducting business activites of superior pharmacy and medical
+                                                    tools, equipment supplier</li>
+                                                <li>Develop a pharmacy and medical supplier network with a mutually
+                                                    beneficial partnership
+                                                    concept</li>
+                                                <li>Developing pharmacy and medical supplier network in Lampung</li>
+                                                <li>Optimizing other income</li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Content Row -->
-                            <div class="row">
-                                <!-- Area Chart -->
-                                <div class="col-xl-8 col-lg-7">
+
+                                <!-- Content Row -->
+
+                                <div class="col-lg-4">
                                     <div class="card shadow mb-4">
-                                        <!-- Card Header - Dropdown -->
-                                        <div
-                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <h6 class="m-0 font-weight-bold text-primary">REVIEW SOLD PRODUCTS</h6>
-                                            <!-- <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        <!-- Card Header - Accordion -->
+                                        <a href="#collapseCardExample" class="d-block card-header py-3"
+                                            data-toggle="collapse" role="button" aria-expanded="true"
+                                            aria-controls="collapseCardExample">
+                                            <h6 class="m-0 font-weight-bold text-primary">Daily Task</h6>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div> -->
-                                        </div>
-                                        <!-- Card Body -->
-                                        <div class="card-body">
-                                            <div class="chart-area">
-                                                <canvas id="myAreaChart"></canvas>
+                                        <!-- Card Content - Collapse -->
+                                        <div class="collapse show" id="collapseCardExample">
+                                            <div class="card-body">
+                                                <span><strong>Before</strong></span>
+                                                <ul>
+                                                    <li>
+                                                        Briefing
+                                                    </li>
+                                                    <li>
+                                                        Clean the room
+                                                    </li>
+                                                    <li>
+                                                        Clean the storage
+                                                    </li>
+                                                    <li>
+                                                        Check the cashier
+                                                    </li>
+                                                    <li>
+                                                        Check products availability
+                                                    </li>
+                                                    <li>
+                                                        Make sure all the employee are ready
+                                                    </li>
+                                                </ul>
+                                                <span><strong>After</strong></span>
+                                                <ul>
+                                                    <li>
+                                                        Double check products availability
+                                                    </li>
+                                                    <li>
+                                                        Clean the room
+                                                    </li>
+                                                    <li>
+                                                        Clean the storage
+                                                    </li>
+                                                    <li>
+                                                        Check the cashier and double check the money
+                                                    </li>
+                                                    <li>
+                                                        Briefing
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Pie Chart -->
-                                <div class="col-xl-4 col-lg-5">
+                                <div class="col-lg-4">
                                     <div class="card shadow mb-4">
-                                        <!-- Card Header - Dropdown -->
-                                        <div
-                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <h6 class="m-0 font-weight-bold text-primary">EXPENSE STATEMENT</h6>
-                                            <div class="dropdown no-arrow">
-                                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <div class="dropdown-header">Dropdown Header:</div>
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                </div>
+                                        <!-- Card Header - Accordion -->
+                                        <a href="#Help1" class="d-block card-header py-3" data-toggle="collapse"
+                                            role="button" aria-expanded="true" aria-controls="Help1">
+                                            <h6 class="m-0 font-weight-bold text-primary">How to Start Sale Transaction
+                                            </h6>
+                                        </a>
+                                        <!-- Card Content - Collapse -->
+                                        <div class="collapse show" id="Help1">
+                                            <div class="card-body">
+                                                <ol>
+                                                    <li>
+                                                        Click sidebar: Sale
+                                                    </li>
+                                                    <li>
+                                                        Click sidebar: New Sale
+                                                    </li>
+                                                    <li>
+                                                        No.Invoice is autogenerated
+                                                    </li>
+                                                    <li>
+                                                        Choose the product by changin Variant ID
+                                                    </li>
+                                                    <li>
+                                                        Fill the Qty.
+                                                    </li>
+                                                    <li>
+                                                        Click Add
+                                                    </li>
+                                                    <li>
+                                                        Repeat step 4 - 6 to add another products
+                                                    </li>
+                                                    <li>
+                                                        Input the costumer payment into Total Payment
+                                                    </li>
+                                                    <li>
+                                                        Click Submit to finish the transaction
+                                                    </li>
+                                                </ol>
                                             </div>
                                         </div>
-                                        <!-- Card Body -->
-                                        <div class="card-body">
-                                            <div class="chart-pie pt-4 pb-2">
-                                                <canvas id="myPieChart"></canvas>
-                                            </div>
-                                            <div class="mt-4 text-center small">
-                                                <span class="mr-2">
-                                                    <i class="fas fa-circle text-primary"></i> Direct
-                                                </span>
-                                                <span class="mr-2">
-                                                    <i class="fas fa-circle text-success"></i> Social
-                                                </span>
-                                                <span class="mr-2">
-                                                    <i class="fas fa-circle text-info"></i> Referral
-                                                </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card shadow mb-4">
+                                        <!-- Card Header - Accordion -->
+                                        <a href="#Help1" class="d-block card-header py-3" data-toggle="collapse"
+                                            role="button" aria-expanded="true" aria-controls="Help1">
+                                            <h6 class="m-0 font-weight-bold text-primary">How to Add Stock
+                                            </h6>
+                                        </a>
+                                        <!-- Card Content - Collapse -->
+                                        <div class="collapse show" id="Help1">
+                                            <div class="card-body">
+                                                <ol>
+                                                    <li>
+                                                        Check the product variant availability
+                                                    </li>
+                                                    <li>
+                                                        Unavailable? please add new Variant.
+                                                    </li>
+                                                    <li>
+                                                        Click sidebar: purchase
+                                                    </li>
+                                                    <li>
+                                                        Click sidebar: add purchase
+                                                    </li>
+                                                    <li>
+                                                        Fill the purchasing no.invoice, if available
+                                                    </li>
+                                                    <li>
+                                                        Choose the variant ID
+                                                    </li>
+                                                    <li>
+                                                        Fill the restock total in table Qty.
+                                                    </li>
+                                                    <li>
+                                                        Click Add
+                                                    </li>
+                                                    <li>
+                                                        Repeat step 6 - 8 to re-stock another products
+                                                    </li>
+                                                    <li>
+                                                        Double check
+                                                    </li>
+                                                    <li>
+                                                        Click Submit to finish
+                                                    </li>
+                                                </ol>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- /.container-fluid -->
                         </div>
-                        <!-- /.container-fluid -->
-                </div>
-                <!-- End of Main Content -->
-                <!-- Footer -->
-                <%- include('../partials/footer') %>
+                        <!-- End of Main Content -->
+                        <!-- Footer -->
+                        <%- include('../partials/footer') %>

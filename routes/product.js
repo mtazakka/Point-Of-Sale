@@ -11,9 +11,10 @@ module.exports = function (db){
     //CATEGORY
     router.get('/addcategory', async function(req, res, next) {
         try{
-           res.render('product/addcategory')
+            res.render('product/addcategory')
         } catch (e){
-            res.send(e)
+            console.log(e)
+            return res.send(e)
         }
     });
     router.post('/addcategory', async function (req, res, next) {
@@ -21,25 +22,28 @@ module.exports = function (db){
             const addData = 'INSERT INTO CATEGORY(name) values ($1)'
             await db.query(addData, [req.body.categoryName], (err, data) => {
                 if (err) {
+                    console.log(err)
                     return res.send(err)
                 }
                 res.redirect('../product/categorylist')
                 }) 
             }catch (err) {
-                res.send(err)
+                console.log(err)
+                return res.send(err)
             }
     });
     router.get('/categorylist', async function(req, res, next) {
         try{
             await db.query('SELECT * FROM CATEGORY', (err, data)=>{
                 if (err) {
-                    console.log('Failed to read')
-                    throw err;
+                    console.log(err)
+                    return res.send(err)
                 }
                 res.render('product/categorylist', {data:data.rows})
             })
         } catch (e){
-            res.send(e)
+            console.log(e)
+            return res.send(err)
         }
     });
     router.get('/editcategory/:id', async function (req, res, next)  {
@@ -47,26 +51,30 @@ module.exports = function (db){
             const selectData = 'SELECT * FROM CATEGORY WHERE category.id = $1'
             await db.query(selectData,[req.params.id], (err, data) => {
                 if (err) {
-                console.log('Failed to read')
-                throw err;
+                    console.log(err)
+                    return res.send(err)
                 }
                 res.render('product/editcategory', { item:data.rows[0] })   
             })
         } catch (err) {
-            res.send(err)}
+            res.send(err)
+            return res.send(err)
+        }
     })
     router.post('/editcategory/:id', async function (req, res, next) {
         try{
             const editData = 'UPDATE CATEGORY set name=$1 where category.id = $2'
             await db.query(editData, [req.body.categoryName, req.params.id], (err) => {
-            if (err) {
-            console.log('Failed to edit')
-            throw err;
+                if (err) {
+                    console.log(err)
+                    return res.send(err)
             }
             res.redirect('../categorylist')
             })
         } catch (err) {
-            res.send(err)}
+            console.log(err)
+            return res.send(err)
+        }
     })
     router.get('/deletecategory/:id', async function (req, res, next) {
         try{
@@ -79,6 +87,7 @@ module.exports = function (db){
             res.redirect('../categorylist')
             })
         } catch (err) {
+            console.log(err)
             res.send(err)
         }
     })
@@ -86,32 +95,39 @@ module.exports = function (db){
     //UNIT
     router.get('/addunit', async function(req, res, next) {
         try{
-           res.render('product/addunit')
+            res.render('product/addunit')
         } catch (e){
-            res.send(e)
+            console.log(e)
+            return res.send(err)
         }
     });
     router.post('/addunit', async function (req, res, next) {
         try{
             const addData = 'INSERT INTO UNIT(name) values ($1)'
             await db.query(addData, [req.body.unitName], (err, data) => {
-                if (err) return res.send(err)
+                if (err) {
+                    console.log(err)
+                    return res.send(err)
+                }
                 res.redirect('../product/unitlist')
             })
         } catch (e){
-            res.send(e)}
+            console.log(e)
+            res.send(e)
+        }
     });
     router.get('/unitlist', async function(req, res, next) {
         try{
             db.query('SELECT * FROM UNIT', (err, data)=>{
                 if (err) {
-                    console.log('Failed to read')
-                    throw err;
+                    console.log(err)
+                    return res.send(err)
                 }
                 res.render('product/unitlist', {data:data.rows})
             })
         } catch (e){
-            res.send(e)
+            console.log(e)
+            return res.send(err)
         }
     });
     router.get('/editunit/:id', async function(req, res,next){
@@ -119,70 +135,81 @@ module.exports = function (db){
         const selectData = 'SELECT * FROM UNIT WHERE unit.id = $1'
         db.query(selectData,[req.params.id], (err, data) => {
             if (err) {
-            console.log('Failed to read')
-            throw err;
+                console.log(err)
+                return res.send(err);
             }
             res.render('product/editunit', { item:data.rows[0] })   
         })
     }catch (err) {
-        res.send(err)}
+        console.log(err);
+        return res.send(err)
+    }
     })
     router.post('/editunit/:id', async function(req, res, next){
         try{
         const editData = 'UPDATE UNIT set name=$1 where unit.id = $2'
         db.query(editData, [req.body.unitName, req.params.id], (err) => {
             if (err) {
-            console.log('Failed to edit')
-            throw err;
+                console.log(err)
+                return res.send(err);
             }
             res.redirect('../unitlist')
             })
         }catch (err) {
-            res.send(err)
+                console.log(err)
+                return res.send(err);
     }})
-    router.get('/deleteunit/:id', async function(req, res, next) {
+    router.get('/deleteunit/:id', async function (req, res, next) {
         try{
-            const deleteData = 'DELETE FROM UNIT WHERE id = $1'
+            const deleteData = 'DELETE FROM unit WHERE id = $1'
             await db.query(deleteData, [req.params.id], (err) => {
                 if (err) {
                     console.log('Failed to delete')
                     throw err
-                } res.redirect('../unitlist')
-        })
-        } catch(err){
+                }
+            res.redirect('../unitlist')
+            })
+        } catch (err) {
+            console.log(err)
             res.send(err)
-    }})
-
+        }
+    })
     //STORAGE1
     router.get('/addstorage', async function(req, res, next) {
         try{
-           res.render('product/addstorage')
+            res.render('product/addstorage')
         } catch (e){
-            res.send(e)
+            console.log(err)
+            return res.send(err);
         }
     });
     router.post('/addstorage', async function (req, res, next) {
     try{
         const addData = 'INSERT INTO storage(name) values ($1)'
         await db.query(addData, [req.body.storageName], (err, data) => {
-            if (err) return res.send(err)
+            if (err) {
+                console.log(err)
+                return res.send(err);
+            }
             res.redirect('../product/storagelist')
         })
         }catch (err) {
-            res.send(err)
-            }
+            console.log(err)
+            return res.send(err);
+        }
     });
     router.get('/storagelist', async function(req, res, next) {
         try{
             db.query('SELECT * FROM storage', (err, data)=>{
                 if (err) {
-                    console.log('Failed to read')
-                    throw err;
+                    console.log(err)
+                    return res.send(err);
                 }
                 res.render('product/storagelist', {data:data.rows})
             })
         } catch (e){
-            res.send(e)
+            console.log(err)
+            return res.send(err);
         }
     });
     router.get('/editstorage/:id', async function (req, res, next) {
@@ -190,13 +217,14 @@ module.exports = function (db){
         const selectData = 'SELECT * FROM storage WHERE storage.id = $1'
         await db.query(selectData,[req.params.id], (err, data) => {
             if (err) {
-            console.log('Failed to read')
-            throw err;
+                console.log(err)
+                return res.send(err);
             }
             res.render('product/editstorage', { item:data.rows[0] })   
         })}
         catch (err) {
-            res.send(err)
+            console.log(err)
+            return res.send(err);
     }
     })
     router.post('/editstorage/:id', async function (req, res, next) {
@@ -204,53 +232,64 @@ module.exports = function (db){
             const editData = 'UPDATE storage set name=$1 where storage.id = $2'
             await db.query(editData, [req.body.storageName, req.params.id], (err) => {
                 if (err) {
-                    console.log('Failed to edit')
-                    throw err;
+                    console.log(err)
+                    return res.send(err);
                 }
             res.redirect('../storagelist')
             })
         } catch (err) {
-            res.send(err)
+            console.log(err)
+            return res.send(err);
     }})
     router.get('/deletestorage/:id', async function (req, res, next)  {
-    const deleteData = 'DELETE FROM storage WHERE id = $1'
-    db.query(deleteData, [req.params.id], (err) => {
-        if (err) {
-        {
-            console.log('Failed to delete')
-            throw err
-        }
-        }
-    })
-    res.redirect('../storagelist')
-    })
+        try{ 
+            const deleteData = 'DELETE FROM storage WHERE id = $1'
+            await db.query(deleteData, [req.params.id], (err) => {
+                if (err) {
+                    console.log(err)
+                    return res.send(err);      
+                } 
+            res.redirect('../storagelist')
+            })
+        }catch (err) {
+            console.log(err)
+            return res.send(err)
+        }})
 
     //PRODUCT
     router.get('/addproduct', async function(req, res, next) {
         try{
-           res.render('product/addproduct')
+            res.render('product/addproduct')
         } catch (e){
-            res.send(e)
+            console.log(err)
+            return res.send(err)
         }
     });
     router.post('/addproduct', async function (req, res, next) {
-        const addData = 'INSERT INTO PRODUCT(name) values ($1)'
-        await db.query(addData, [req.body.productName], (err, data) => {
-            if (err) return res.send(err)
-            res.redirect('../product/productlist')
-    })
-    });
+        try{
+            const addData = 'INSERT INTO PRODUCT(name) values ($1)'
+            await db.query(addData, [req.body.productName], (err, data) => {
+                if (err) {
+                    console.log(err)
+                    return res.send(err)
+                }res.redirect('../product/productlist')
+            })
+        } catch (err){
+            console.log(err)
+            return res.send(err)
+        }});
     router.get('/productlist', async function (req, res, next) {
         try{
             await db.query('SELECT * FROM PRODUCT', (err, data)=>{
                 if (err) {
-                    console.log('Failed to read')
+                    console.log(err)
                     throw err;
                 }
                 res.render('product/productlist', {data:data.rows})
             })
-        } catch (e){
-            res.send(e)
+        } catch (err){
+            console.log(err)
+            return res.send(err)
         }
     });
     router.get('/editproduct/:id', async function (req, res, next) {
@@ -258,41 +297,42 @@ module.exports = function (db){
             const selectData = 'SELECT * FROM PRODUCT WHERE product.id = $1'
             await db.query(selectData,[req.params.id], (err, data) => {
                 if (err) {
-                console.log('Failed to read')
-                throw err;
+                        console.log(err)
+                        return res.send(err)
                 }
                 res.render('product/editproduct', { item:data.rows[0] })   
             })
-        } catch (e){
-            res.send(e)
+        } catch (err){
+            console.log(err)
+            return res.send(err)
     }})
     router.post('/editproduct/:id',async function (req, res, next) {
         try{
             const editData = 'UPDATE PRODUCT set name=$1 where product.id = $2'
             await db.query(editData, [req.body.productName, req.params.id], (err) => {
                 if (err) {
-                console.log('Failed to edit')
-                throw err;
+                        console.log(err)
+                        return res.send(err)
                 }
                 res.redirect('../productlist')
                 })
-            } catch (e){
-                res.send(e)
+            } catch (err){
+                        console.log(err)
+                        return res.send(err)
     }})
     router.get('/deleteproduct/:id', async function (req, res, next) {
         try{
             const deleteData = 'DELETE FROM PRODUCT WHERE id = $1'
             await db.query(deleteData, [req.params.id], (err) => {
                 if (err) {
-                {
                     console.log('Failed to delete')
                     throw err
                 }
-                }
-            })
-            res.redirect('../productlist')
+                res.redirect('../productlist')
+            }) 
         } catch (err) {
-            res.send(err)
+            console.log(err)
+            return res.send(err)
     }})
 
     //PRODUCT VARIANT
@@ -309,9 +349,10 @@ module.exports = function (db){
             dataStorage: dataStorage.rows,
             dataCategory: dataCategory.rows,
             dataUnit: dataUnit.rows
-           })
-        } catch (e){
-            res.send(e)
+        })
+        } catch (err){
+            console.log(err)
+            return res.send(err)
         }
     });
     router.post('/addproductvariant', async function (req, res, next) {
@@ -322,7 +363,7 @@ module.exports = function (db){
                 return res.status(400).send('No files were uploaded.');
             }            
             variantImage = req.files.variantImage;
-            const filename = `V${Date.now()}-${variantImage.name}}`
+            const filename = `V${Date.now()}-${variantImage.name}`
             uploadPath = path.join(__dirname, "../", "public", "uploads", "imagevariant", filename);
             await variantImage.mv(uploadPath, function(err) {
                 if (err){
@@ -338,7 +379,8 @@ module.exports = function (db){
                     })
             });
         } catch (err) {
-            res.send(err)
+            console.log(err)
+            return res.send(err)
     }});
     router.get('/manageproduct', async function(req, res, next) {
         try{ 
@@ -347,9 +389,9 @@ module.exports = function (db){
                 dataVariant: dataVariant.rows,
                 currencyFormatter
             })
-            console.log(dataVariant.rows)
         } catch (e){
-            res.send(e)
+            console.log(err)
+            return res.send(err)
         }
     });
     router.get('/deletevariant/:id', async function (req, res, next) {
@@ -357,15 +399,14 @@ module.exports = function (db){
             const deleteData = 'DELETE FROM PRODUCT_VARIANT WHERE idvariant = $1'
             await db.query(deleteData, [req.params.id], (err) => {
                 if (err) {
-                {
-                    console.log('Failed to delete')
-                    throw err
+                    console.log(err)
+                    return res.send(err)
                 }
-                }
-            })
             res.redirect('../manageproduct')
-         } catch (err) {
-            res.send(err)
+            })
+        } catch (err) {
+            console.log(err)
+            return res.send(err)
     }})
     router.get('/editvariant/:id', async function (req, res, next) {
         try{
@@ -377,8 +418,8 @@ module.exports = function (db){
             const selectData = 'SELECT PV.idvariant, PV.qrcode, PV.image, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.price, PV.stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id AND PV.idvariant = $1'
             await db.query(selectData,[req.params.id], (err, data) => {
                 if (err) {
-                console.log('Failed to read')
-                throw err;
+                        console.log(err)
+                        return res.send(err)
                 }
                 console.log(data.rows[0])
                 res.render('product/editvariant', { 
@@ -390,20 +431,22 @@ module.exports = function (db){
                     dataUnit: dataUnit.rows
                 })   
             })
-        } catch (e){
-            res.send(e)
+        } catch (err){
+            console.log(err)
+            return res.send(err)
     }})
     router.post('/editvariant/:id',async function (req, res, next) {
         try{
             const editData = 'UPDATE PRODUCT_VARIANT set qrcode=$1, idproduct=$2, idstorage=$3, name=$4, idcategory=$5, price=$6, stock=$7, idunit=$8, remarks=$9, idsupplier=$10, supplier_price=$11 where idvariant = $12'
             await db.query(editData, [req.body.variantQrcode, req.body.productName, req.body.variantStorage, req.body.variantName, req.body.variantCategory, req.body.variantSalePrice, req.body.variantStock, req.body.variantUnit, req.body.variantRemarks, req.body.variantSupplier, req.body.variantSupplierPrice, req.params.id], (err) => {
                     if (err) {
-                    res.send(err)}
-                    res.redirect('../manageproduct')
+                            res.send(err)
+                        }
+                        res.redirect('../manageproduct')
                     })
-                // })
-            } catch (e){
-                    res.send(e)
+            } catch (err){
+                    console.log(err)
+                    return res.send(err)
     }})
 
 return router;
