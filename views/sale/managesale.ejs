@@ -221,8 +221,7 @@
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                <%= moment(item.date).format('DD MMM YYYY hh:mm:ss a')
-                                                                    %>
+                                                                <%= moment(item.date).format('DD MMM YYYY hh:mm:ss') %>
                                                             </td>
                                                             <td class="right-position">
                                                                 <%= currencyFormatter.format(item.total_price) %>
@@ -236,6 +235,8 @@
                                                             <td>
                                                                 <a class="btn btn-warning"
                                                                     href="/sale/show/<%= item.no_invoice %>">EDIT</a>
+                                                                <a class="btn btn-primary" target="_blank"
+                                                                    href="/sale/invoice/<%= item.no_invoice %>">PRINT</a>
                                                             </td>
                                                         </tr>
                                                         <% }) %>

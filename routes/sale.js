@@ -108,7 +108,22 @@ module.exports = function (db){
             }
         
         });
-
+    router.get('/invoice/:no_invoice', async function(req, res, next) {
+        try{
+            const saleTransaction = await db.query('SELECT * FROM SALE_TRANSACTION WHERE no_invoice = $1', [req.params.no_invoice])
+            const saleDetail = await db.query('SELECT SD.*, PV.name as name FROM SALE_DETAIL as SD, PRODUCT_VARIANT as PV WHERE SD.idvariant = PV.idvariant AND no_invoice = $1', [req.params.no_invoice])
+            res.render('sale/invoice', {
+                currencyFormatter,
+                saleTransaction: saleTransaction.rows[0],
+                saleDetail: saleDetail.rows,
+                moment,
+            })
+        } catch (e){
+            console.log("Error at router /show", e)
+            res.send(e)
+        }
+    
+    });
 
 return router;
 }
