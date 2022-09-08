@@ -20,7 +20,6 @@
                         <i class="fa-solid fa-suitcase-medical"></i>
                         <span>DASHBOARD</span></a>
                 </li>
-
                 <hr class="sidebar-divider">
 
                 <div class="sidebar-heading">
@@ -117,12 +116,12 @@
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../purchase/add">Add Purchase</a>
-                            <a class="collapse-item active" href="../purchase/manage">Manage Purchase</a>
+                            <a class="collapse-item active" href="../purchase/manage">Purchase Management</a>
                         </div>
                     </div>
                 </li>
                 <!--STOCK-->
-                <li class="nav-item">
+                <li class="nav-item" id="developmentprocess">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
                         aria-expanded="true" aria-controls="collapseStock">
                         <i class="fa-solid fa-list"></i>
@@ -194,7 +193,7 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                SALE MANAGEMENT TRANSACTION</h5>
+                                                PURCHASE MANAGEMENT TRANSACTION</h5>
                                         </div>
                                         <div class="d-sm-flex align-items-center justify-content-between mb-4"
                                             style="margin:20px 0px 0px 10px;">
@@ -210,8 +209,7 @@
                                                         <th>No. Invoice</th>
                                                         <th>Date</th>
                                                         <th>Total Price</th>
-                                                        <th>Total Payment</th>
-                                                        <th>Cashback</th>
+                                                        <th>Supplier Name</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -222,25 +220,24 @@
                                                                 <%= index+1 %>
                                                             </td>
                                                             <td>
-                                                                <a href="/sale/manage?noInvoice=<%= item.no_invoice %>">
+                                                                <a
+                                                                    href="/purchase/manage?noInvoice=<%= item.no_invoice %>">
                                                                     <%= item.no_invoice %>
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                <%= moment(item.date).format('DD MMM YYYY hh:mm:ss') %>
+                                                                <%= moment(item.date).format('DD MMM YYYY hh:mm:ss a')
+                                                                    %>
                                                             </td>
                                                             <td class="right-position">
                                                                 <%= currencyFormatter.format(item.total_price) %>
                                                             </td>
                                                             <td class="right-position">
-                                                                <%= currencyFormatter.format(item.payment) %>
-                                                            </td>
-                                                            <td class="right-position">
-                                                                <%= currencyFormatter.format(item.cashback) %>
+                                                                <%= item.idsupplier %>
                                                             </td>
                                                             <td>
                                                                 <a class="btn btn-success"
-                                                                    href="/sale/show/<%= item.no_invoice %>">show</a>
+                                                                    href="/purchase/show/<%= item.id %>">show</a>
                                                             </td>
                                                         </tr>
                                                         <% }) %>
@@ -250,8 +247,7 @@
                                                     <th>No. Invoice</th>
                                                     <th>Date</th>
                                                     <th>Total Price</th>
-                                                    <th>Total Payment</th>
-                                                    <th>Cashback</th>
+                                                    <th>Supplier Name</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </table>
@@ -263,8 +259,10 @@
                                                         <th>No.</th>
                                                         <th>ID Variant</th>
                                                         <th>Variant Name</th>
-                                                        <th>Qty</th>
+                                                        <th>Storage Name</th>
+                                                        <th>Supplier Name</th>
                                                         <th>Price</th>
+                                                        <th>Qty</th>
                                                         <th>Total Price</th>
                                                     </tr>
                                                 </thead>
@@ -280,11 +278,17 @@
                                                             <td>
                                                                 <%= item.name %>
                                                             </td>
-                                                            <td class="right-position">
-                                                                <%= item.qty %>
+                                                            <td>
+                                                                <%= item.storage_name %>
+                                                            </td>
+                                                            <td>
+                                                                <%= item.supplier_name %>
                                                             </td>
                                                             <td class="right-position">
                                                                 <%= currencyFormatter.format(item.price) %>
+                                                            </td>
+                                                            <td class="right-position">
+                                                                <%= item.qty %>
                                                             </td>
                                                             <td class="right-position">
                                                                 <%= currencyFormatter.format(item.total_price) %>
@@ -295,7 +299,7 @@
                                             </table>
                                         </div>
                                         <div class="card-footer">
-                                            <a class="btn btn-primary" href="/penjualan/add"> New Transaction</a>
+                                            <a class="btn btn-primary" href="add"> New Transaction</a>
                                         </div>
                                     </div>
                                 </div>

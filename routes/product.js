@@ -316,25 +316,24 @@ module.exports = function (db){
     });
     router.post('/addproductvariant', async function (req, res, next) {
         try{
-            
             let variantImage;
             let uploadPath;
-
             if (!req.files || Object.keys(req.files).length === 0) {
                 return res.status(400).send('No files were uploaded.');
-            }
-
-            // The name of the input field (i.e. "variantImage") is used to retrieve the uploaded file
+            }            
             variantImage = req.files.variantImage;
             const filename = `V${Date.now()}-${variantImage.name}}`
             uploadPath = path.join(__dirname, "../", "public", "uploads", "imagevariant", filename);
-            // Use the mv() method to place the file somewhere on your server
             await variantImage.mv(uploadPath, function(err) {
-                if (err)
-                return res.status(500).send(err);
-                const addData = `INSERT INTO PRODUCT_VARIANT(qrcode, image, idproduct, idstorage, name, idcategory, price, stock, idunit, remarks, idsupplier, supplier_price) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11, $12)`
-                db.query(addData, [req.body.variantQrcode, filename, req.body.productName, req.body.variantStorage, req.body.variantName, req.body.variantCategory, req.body.variantSalePrice, req.body.variantStock, req.body.variantUnit, req.body.variantRemarks, req.body.variantSupplier, req.body.variantSupplierPrice ], (err, data) => {
-                    if (err) return res.send(err)
+                if (err){
+                    console.log(err)    
+                    return res.status(500).send(err);
+                }
+                const addData = `INSERT INTO PRODUCT_VARIANT(qrcode, image, idproduct, idstorage, name, idcategory, price, idunit, remarks, idsupplier, supplier_price) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`
+                db.query(addData, [req.body.variantQrcode, filename, req.body.productName, req.body.variantStorage, req.body.variantName, req.body.variantCategory, req.body.variantSalePrice, req.body.variantUnit, req.body.variantRemarks, req.body.variantSupplier, req.body.variantSupplierPrice ], (err, data) => {
+                    if (err) {
+                        console.log(err);
+                        return res.send(err)}
                     res.redirect('../product/manageproduct')
                     })
             });
@@ -396,23 +395,8 @@ module.exports = function (db){
     }})
     router.post('/editvariant/:id',async function (req, res, next) {
         try{
-            // let variantImage;
-            // let uploadPath;
-
-            // if (!req.files || Object.keys(req.files).length === 0) {
-            //     return res.status(400).send('No files were uploaded.');
-            // }
-
-            // // The name of the input field (i.e. "variantImage") is used to retrieve the uploaded file
-            // variantImage = req.files.variantImage;
-            // const filename = `V${Date.now()}-${variantImage.name}}`
-            // uploadPath = path.join(__dirname, "../", "public", "uploads", "imagevariant", filename);
-            // // Use the mv() method to place the file somewhere on your server
-            // await variantImage.mv(uploadPath, function(err) {
-            //     if (err)
-            //     return res.status(500).send(err);
-                const editData = 'UPDATE PRODUCT_VARIANT set qrcode=$1, idproduct=$2, idstorage=$3, name=$4, idcategory=$5, price=$6, stock=$7, idunit=$8, remarks=$9, idsupplier=$10, supplier_price=$11 where idvariant = $12'
-                await db.query(editData, [req.body.variantQrcode, req.body.productName, req.body.variantStorage, req.body.variantName, req.body.variantCategory, req.body.variantSalePrice, req.body.variantStock, req.body.variantUnit, req.body.variantRemarks, req.body.variantSupplier, req.body.variantSupplierPrice, req.params.id], (err) => {
+            const editData = 'UPDATE PRODUCT_VARIANT set qrcode=$1, idproduct=$2, idstorage=$3, name=$4, idcategory=$5, price=$6, stock=$7, idunit=$8, remarks=$9, idsupplier=$10, supplier_price=$11 where idvariant = $12'
+            await db.query(editData, [req.body.variantQrcode, req.body.productName, req.body.variantStorage, req.body.variantName, req.body.variantCategory, req.body.variantSalePrice, req.body.variantStock, req.body.variantUnit, req.body.variantRemarks, req.body.variantSupplier, req.body.variantSupplierPrice, req.params.id], (err) => {
                     if (err) {
                     res.send(err)}
                     res.redirect('../manageproduct')

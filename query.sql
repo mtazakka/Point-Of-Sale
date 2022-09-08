@@ -4,7 +4,17 @@ CREATE OR REPLACE FUNCTION idpurchase_transaction() RETURNS TEST AS $$
     END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION sale_purchase_price() RETURNS TEST AS $$
+	DECLARE
+		a NUMERIC;
+		b NUMERIC;
+    BEGIN
+		SELECT SUPPLIER_PRICE INTO a FROM PRODUCT_VARIANT;
+		SELECT INSTOCK INTO b FROM PRODUCT_VARIANT;
+        RETURN a * b;
+    END;
 
+$$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION update_sale_transaction() RETURNS TRIGGER AS $set_sale_transaction$
@@ -81,8 +91,8 @@ CREATE OR REPLACE FUNCTION update_purchase_transaction() RETURNS TRIGGER AS $set
 
         END IF;
         --update penjualan
-            SELECT sum(total_price) INTO sum_price FROM purchase_detail WHERE no_invoice = NEW.no_invoice;
-            UPDATE purchase_transaction SET total_price = sum_price WHERE no_invoice = NEW.no_invoice;
+            SELECT sum(total_price) INTO sum_price FROM purchase_detail WHERE id = NEW.id;
+            UPDATE purchase_transaction SET total_price = sum_price WHERE id = NEW.id;
         RETURN NULL; -- result is ignored since this is an AFTER trigger
     END;
 $set_purchase_transaction$ LANGUAGE plpgsql;
@@ -107,4 +117,5 @@ CREATE TRIGGER set_total_price
 BEFORE INSERT OR UPDATE OR DELETE ON purchase_detail
     FOR EACH ROW EXECUTE FUNCTION update_price2(); 
 
+        
 

@@ -117,7 +117,7 @@
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../purchase/add">Add Purchase</a>
-                            <a class="collapse-item" href="../purchase/manage">Manage Purchase</a>
+                            <a class="collapse-item" href="../purchase/manage">Purchase Management</a>
                         </div>
                     </div>
                 </li>
@@ -213,11 +213,46 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <!-- <% dataVariant.forEach((item,index)=> {%>
+                                                        <tr>
+                                                            <td style="text-align:center ;">
+                                                                <%= index+1 %>
+                                                            </td>
+                                                            <td>
+                                                                <%= item.product_name %>
+                                                            </td>
+                                                            <td>
+                                                                <%= item.name %>
+                                                            </td>
+                                                            <td id="nominalOutput">
+                                                                <%= currencyFormatter.format(item.price) %>
+                                                            </td>
+                                                            <td id="nominalOutput">
+                                                                <%= currencyFormatter.format(item.supplier_price) %>
+                                                            </td>
+                                                            <td id="nominalOutput">
+                                                                <%= item.instock %>
+                                                            </td>
+                                                            <td id="nominalOutput">
+                                                                <%= item.outstock %>
+                                                            </td>
+                                                            <td id="nominalOutput">
+                                                                <%= item.stock %>
+                                                            </td>
+                                                            <td class="sale_price_stock" id="nominalOutput">
+                                                                <%= currencyFormatter.format(item.price * item.stock) %>
+                                                            </td>
+                                                            <td id="nominalOutput">
+                                                                <%= currencyFormatter.format(item.supplier_price *
+                                                                    item.instock) %>
+                                                            </td>
+
+                                                        </tr>
+                                                        <% }) %> -->
                                                 </tbody>
                                                 <tr style="text-align:right">
-                                                    <th colspan="7">Total</th>
-                                                    <th>0</th>
-                                                    <th>0</th>
+                                                    <th colspan="8">Total</th>
+                                                    <th id="total_sale_price">0</th>
                                                     <th>0</th>
                                                 </tr>
                                                 </thead>
@@ -237,9 +272,15 @@
                 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
                 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
                 <script>
-                    $(document).ready(function () {
-                        $('#supplierlist').dataTable();
-                    });
+                    // $(document).ready(function () {
+                    //     var TotalValue = 0;
+                    //     $(".sale_price_stock").each(function () {
+                    //         TotalValue += parseFloat($(this).text());
+                    //     })
+                    //     alert(TotalValue);
+                    // });
+
                 </script>
+
 
                 <%- include('../partials/footerlist') %>

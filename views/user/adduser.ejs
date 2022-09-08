@@ -117,12 +117,12 @@
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../purchase/add">Add Purchase</a>
-                            <a class="collapse-item" href="../purchase/manage">Manage Purchase</a>
+                            <a class="collapse-item" href="../purchase/manage">Purchase Management</a>
                         </div>
                     </div>
                 </li>
                 <!--STOCK-->
-                <li class="nav-item">
+                <li class="nav-item" id="developmentprocess">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
                         aria-expanded="true" aria-controls="collapseStock">
                         <i class="fa-solid fa-list"></i>
@@ -186,7 +186,7 @@
                 <!-- Main Content -->
                 <div id="content">
                     <!--topbar-->
-                    <div%- include('../partials/topbar') %>
+                    <%- include('../partials/topbar') %>
                         <!-- End of Topbar -->
                         <!-- Begin Page Content -->
                         <div class="container-fluid" style="margin-top: 20px ;">
@@ -198,79 +198,90 @@
                                                 ADD USER</h5>
                                         </div>
                                         <div class="card-body">
-                                            <form action="" method="post">
+                                            <form action="" method="post" encType="multipart/form-data">
                                                 <div class="row mb-3">
-                                                    <label for="userName" class="col-sm-2 col-form-label">User
+                                                    <label for="user_name" class="col-sm-2 col-form-label">User
                                                         Name</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="userName"
-                                                            name="userName" placeholder="User Name ..." required>
+                                                        <input type="text" class="form-control" id="user_name"
+                                                            name="user_name" placeholder="User Name ..." required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="userPhone" class="col-sm-2 col-form-label">User
+                                                    <label for="user_phone" class="col-sm-2 col-form-label">User
                                                         Mobile Phone</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="userPhone"
-                                                            name="userPhone" placeholder="User Phone ..." required>
+                                                        <input type="text" class="form-control" id="user_phone"
+                                                            name="user_phone" placeholder="User Phone ..." required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="userIdCard" class="col-sm-2 col-form-label">User
+                                                    <label for="user_idcard" class="col-sm-2 col-form-label">User
                                                         Identity Card</label>
                                                     <div class="col-sm-10">
-                                                        <input type="number" class="form-control" id="userIdCard"
-                                                            name="userIdCard"
+                                                        <input type="text" class="form-control" id="user_idcard"
+                                                            name="user_idcard"
                                                             placeholder="User Identity Card Number ..." required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="userEmail" class=" col-sm-2 col-form-label">User
+                                                    <label for="user_email" class=" col-sm-2 col-form-label">User
                                                         Email</label>
                                                     <div class="col-sm-10">
-                                                        <input type="Email" class="form-control" id="userEmail"
-                                                            name="userEmail" placeholder="User Email ..." required>
+                                                        <input type="Email" class="form-control" id="user_email"
+                                                            name="user_email" placeholder="User Email ..." required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="userPassword" class=" col-sm-2 col-form-label">User
+                                                    <label for="user_password" class=" col-sm-2 col-form-label">User
                                                         Password</label>
                                                     <div class="col-sm-10">
-                                                        <input type="password" class="form-control" id="userPassword"
-                                                            name="userPassword" placeholder="User Password ..."
+                                                        <input type="password" class="form-control" id="user_password"
+                                                            name="user_password" placeholder="User Password ..."
                                                             required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="userConfirmPassword"
+                                                    <label for="user_ConfirmPassword"
                                                         class=" col-sm-2 col-form-label">User
                                                         ConfirmPassword</label>
                                                     <div class="col-sm-10">
                                                         <input type="password" class="form-control"
-                                                            id="userConfirmPassword" name="userConfirmPassword"
+                                                            id="user_ConfirmPassword" name="user_ConfirmPassword"
                                                             placeholder="User Confirm Password ..." required><span
                                                             id="message"></span>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="userAddress" class="col-sm-2 col-form-label">User
+                                                    <label for="user_address" class="col-sm-2 col-form-label">User
                                                         Address</label>
                                                     <div class="col-sm-10">
-                                                        <textarea class="form-control" id="userAddress"
-                                                            name="userAddress"
+                                                        <textarea class="form-control" id="user_address"
+                                                            name="user_address"
                                                             placeholder="User Address, includes (ZIP Code) ..."
                                                             cols="30" rows="5" required></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="userMember" class="col-sm-2 col-form-label">User
-                                                        Category</label>
+                                                    <label for="user_status" class="col-sm-2 col-form-label">User
+                                                        Status</label>
                                                     <div class="col-sm-10">
-                                                        <select name="userMember" id="userMember" class="form-control"
+                                                        <select name="user_status" id="user_status" class="form-control"
                                                             required>
-                                                            <option value="member">Admin</option>
-                                                            <option value="nonMember">User</option>
-                                                        </select </div>
+                                                            <option value="Admin">Admin</option>
+                                                            <option value="User">User</option>
+                                                            <option value="Employee">Employee</option>
+                                                            <option value="Non Active">Non Active</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="user_picture" class="col-sm-2 col-form-label">User
+                                                        Image</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="file" class="form-control form-control-sm"
+                                                            style=" padding-bottom: 33px" id="user_picture"
+                                                            name="user_picture">
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
@@ -285,7 +296,6 @@
                                             </form>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <!--  End Content Row -->
@@ -293,13 +303,14 @@
                         <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->
+                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
                 <script>
                     $(document).ready(function () {
-                        $('#userPassword, #userConfirmPassword').on('keyup', function () {
-                            if ($('#userPassword').val() == $('#userConfirmPassword').val()) {
-                                $('#userConfirmPassword').html('Matching').css('color', 'green');
+                        $('#user_password, #user_ConfirmPassword').on('keyup', function () {
+                            if ($('#user_password').val() == $('#user_ConfirmPassword').val()) {
+                                $('#user_ConfirmPassword').html('Matching').css('color', 'green');
                             } else
-                                $('#userConfirmPassword').html('Not Matching').css('color', 'red');
+                                $('#user_ConfirmPassword').html('Not Matching').css('color', 'red');
                         });
                     })
                 </script>

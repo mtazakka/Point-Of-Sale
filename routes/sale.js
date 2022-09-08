@@ -75,6 +75,7 @@ module.exports = function (db){
     router.post('/additem',async function(req, res, next) {
         try{
             const detail = await db.query('INSERT INTO sale_detail(no_invoice, idvariant, qty) VALUES ($1, $2, $3) returning *', [req.body.no_invoice, req.body.idvariant, req.body.qty])
+            const outStock = await db.query('UPDATE PRODUCT_VARIANT SET outstock =$1 WHERE idvariant =$2',[req.body.qty, req.body.idvariant])
            const { rows } = await db.query('SELECT * FROM SALE_TRANSACTION WHERE no_invoice = $1', [req.body.no_invoice])
             res.json(rows[0])            
         } catch (e){

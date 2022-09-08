@@ -119,12 +119,12 @@
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item active" href="../../purchase/add">Add Purchase</a>
-                            <a class="collapse-item" href="../../purchase/manage">Manage Purchase</a>
+                            <a class="collapse-item" href="../../purchase/manage">Purchase Management</a>
                         </div>
                     </div>
                 </li>
                 <!--STOCK-->
-                <li class="nav-item">
+                <li class="nav-item" id="developmentprocess">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
                         aria-expanded="true" aria-controls="collapseStock">
                         <i class="fa-solid fa-list"></i>
@@ -196,7 +196,7 @@
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <h5 class="m-0 font-weight-bold text-primary" style="text-align:center ;">
-                                                ADD PURCHASE TRANSACTION</h5>
+                                                ADD PURCHASE TRANSACTION - UPDATE STOCK</h5>
                                         </div>
                                         <div class="card-body">
                                             <form class="row g-3" id="start-form">
@@ -299,6 +299,10 @@
 
                                                 </tbody>
                                             </table>
+                                            <a href="../manage">
+                                                <button type="submit" class="btn btn-primary" style="float:right ;"
+                                                    onclick="success()">SUBMIT</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -310,7 +314,8 @@
                 <!-- End of Main Content -->
                 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
                 <script>
-                    // let no_invoice = '<%= purchaseTransaction.no_invoice %>'
+                    let no_invoice = '<%= purchaseTransaction.no_invoice %>';
+                    let idpurchase = '<%= purchaseTransaction.id %>'
                     function success() {
                         alert("Transaction Success! Please Check 'Sale Management'");
                     }
@@ -340,14 +345,17 @@
                             const no_invoice = $('#no_invoice').val()
                             const idvariant = $('#idvariant').val()
                             const qty = $('#qty').val()
-                            $.post('/purchase/additem', { no_invoice, idvariant, qty }).done(function (data) {
+                            const total_price = $('#total_price_item').val()
+                            const idsupplier = $('#supplier_name').val()
+                            const idstorage = $('#storage_name').val()
+                            $.post('/purchase/additem', { idpurchase, no_invoice, idvariant, qty, total_price, idsupplier, idstorage }).done(function (data) {
                                 readDetails()
                                 $('#total_price').val(data.total_price)
                             })
                         })
                     })
                     const readDetails = () => {
-                        $.get(`/sale/details/${no_invoice}`).done(function (data) {
+                        $.get(`/purchase/details/${idpurchase}`).done(function (data) {
                             console.log('cek', data)
                             let html = ''
                             data.forEach((item, index) => {
@@ -366,7 +374,7 @@
                                         ${item.qty}
                                     </td>
                                     <td class="right-position">
-                                        ${currencyFormatter.format(item.supplier_price)}
+                                        ${currencyFormatter.format(item.price)}
                                     </td>
                                     <td class="right-position">
                                         ${currencyFormatter.format(item.total_price)}

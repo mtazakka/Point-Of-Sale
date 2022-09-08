@@ -1,3 +1,7 @@
 #developmentprocess {
   display: none;
 }
+
+#nominalOutput {
+  text-align: right;
+}

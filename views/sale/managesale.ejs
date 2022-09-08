@@ -117,12 +117,12 @@
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="../purchase/add">Add Purchase</a>
-                            <a class="collapse-item" href="../purchase/manage">Manage Purchase</a>
+                            <a class="collapse-item" href="../purchase/manage">Purchase Management</a>
                         </div>
                     </div>
                 </li>
                 <!--STOCK-->
-                <li class="nav-item">
+                <li class="nav-item" id="developmentprocess">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
                         aria-expanded="true" aria-controls="collapseStock">
                         <i class="fa-solid fa-list"></i>
@@ -227,7 +227,8 @@
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                <%= moment(item.date).format('DD MMM YYYY hh:mm:ss') %>
+                                                                <%= moment(item.date).format('DD MMM YYYY hh:mm:ss a')
+                                                                    %>
                                                             </td>
                                                             <td class="right-position">
                                                                 <%= currencyFormatter.format(item.total_price) %>
