@@ -27,7 +27,8 @@ module.exports = function (db){
             rows,
             currencyFormatter,
             moment,
-            details: details.rows
+            details: details.rows,
+            noInvoice: noInvoice,
         })
     } catch (e){
         res.send(e)
@@ -35,23 +36,9 @@ module.exports = function (db){
     })
     router.get('/show/:id', isLoggedIn, async function(req, res, next) {
         try{     
-                   
-            // const dataProduct = await db.query('SELECT * FROM PRODUCT')
-            // const dataSupplier = await db.query('SELECT * FROM SUPPLIER')
-            // const dataStorage = await db.query('SELECT * FROM STORAGE')
-            // const dataCategory = await db.query('SELECT * FROM CATEGORY')
-            // const dataUnit = await db.query('SELECT * FROM UNIT')
-            // const dataProductVariant= await db.query('SELECT * FROM PRODUCT_VARIANT')
             const purchaseTransaction = await db.query('SELECT * FROM purchase_TRANSACTION WHERE id = $1', [req.params.id])
             const {rows} = await db.query('SELECT idvariant, name from PRODUCT_VARIANT ORDER BY idvariant')
             res.render('purchase/newtransaction', {
-                // currencyFormatter,
-                // dataProduct: dataProduct.rows,
-                // dataSupplier: dataSupplier.rows,
-                // dataStorage: dataStorage.rows,
-                // dataCategory: dataCategory.rows,
-                // dataUnit: dataUnit.rows,
-                // dataProductVariant: dataProductVariant.rows,
                 user:req.session.user,
                 currentPage: 'purchaseTransaction',
                 product_variant : rows,
@@ -91,7 +78,6 @@ module.exports = function (db){
     });
     router.get('/details/:idpurchase', isLoggedIn, async function(req, res, next) {
             try{
-                console.log(req.params.idpurchase, '-----------test----------')
                 const { rows }  = await db.query('SELECT SD.*, PV.name FROM PURCHASE_DETAIL as SD LEFT JOIN PRODUCT_VARIANT as PV ON SD.idvariant = PV.idvariant WHERE SD.id_purchase = $1 ORDER BY SD.id', [req.params.idpurchase]);
                 res.json(rows)
                 
@@ -101,6 +87,20 @@ module.exports = function (db){
             }
         
         });
+        router.get('/delete/:id', isLoggedIn, async function (req, res, next) {
+        try{
+            const deleteData = 'DELETE FROM PURCHASE_TRANSACTION WHERE id = $1'
+            await db.query(deleteData, [req.params.id], (err) => {
+                if (err) {
+                    console.log(err)
+                    return res.send(err)
+                }
+            res.redirect('../manage')
+            })
+        } catch (err) {
+            console.log(err)
+            return res.send(err)
+    }})
 
 
 return router;

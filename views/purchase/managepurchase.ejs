@@ -241,6 +241,8 @@
                                                                 <td>
                                                                     <a class="btn btn-warning"
                                                                         href="/purchase/show/<%= item.id %>">EDIT</a>
+                                                                    <a class="btn btn-danger"
+                                                                        href="/purchase/delete/<%= item.id %>">DELETE</a>
                                                                 </td>
                                                                 <%}%>
                                                         </tr>
@@ -259,6 +261,10 @@
                                             </table>
                                         </div>
                                         <div class="card-body">
+                                            <p>Transaction Detail, Invoice No. <strong>
+                                                    <%= noInvoice %>
+                                                </strong>
+                                            </p>
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>

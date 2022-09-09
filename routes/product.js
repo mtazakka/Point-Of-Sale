@@ -5,6 +5,7 @@ var path = require('path');
 const { currencyFormatter, isLoggedIn } = require('../public/helpers/util')
 var app = express();
 app.use(fileUpload());
+const moment = require ('moment')
 
 /* GET users listing. */
 module.exports = function (db){
@@ -370,10 +371,10 @@ module.exports = function (db){
     //PRODUCT VARIANT
     router.get('/addproductvariant', isLoggedIn, async function(req, res, next) {
         try{
-        const dataProduct = await db.query('SELECT * FROM PRODUCT')
-        const dataSupplier = await db.query('SELECT * FROM SUPPLIER')
-        const dataStorage = await db.query('SELECT * FROM STORAGE')
-        const dataCategory = await db.query('SELECT * FROM CATEGORY')
+        const dataProduct = await db.query('SELECT * FROM PRODUCT ORDER BY name asc')
+        const dataSupplier = await db.query('SELECT * FROM SUPPLIER ORDER BY name asc')
+        const dataStorage = await db.query('SELECT * FROM STORAGE ORDER BY name asc')
+        const dataCategory = await db.query('SELECT * FROM CATEGORY ORDER BY name asc')
         const dataUnit = await db.query('SELECT * FROM UNIT')
         res.render('product/addproductvariant', {
             user:req.session.user,
@@ -417,7 +418,7 @@ module.exports = function (db){
     }});
     router.get('/manageproduct', isLoggedIn, async function(req, res, next) {
         try{ 
-            const dataVariant = await db.query('SELECT PV.idvariant, PV.qrcode, PV.image, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.price, PV.stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id')
+            const dataVariant = await db.query('SELECT PV.idvariant, PV.qrcode, PV.image, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.price, PV.stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id ORDER BY PV.reg_date asc')
             res.render('product/manageproduct',{
                 user:req.session.user,
                 dataVariant: dataVariant.rows,
@@ -449,7 +450,7 @@ module.exports = function (db){
             const dataStorage = await db.query('SELECT * FROM STORAGE')
             const dataCategory = await db.query('SELECT * FROM CATEGORY')
             const dataUnit = await db.query('SELECT * FROM UNIT')
-            const selectData = 'SELECT PV.idvariant, PV.qrcode, PV.image, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.price, PV.stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id AND PV.idvariant = $1'
+            const selectData = 'SELECT PV.idvariant, PV.qrcode, PV.image, PV.reg_date, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.price, PV.stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id AND PV.idvariant = $1'
             await db.query(selectData,[req.params.id], (err, data) => {
                 if (err) {
                         console.log(err)
@@ -463,7 +464,8 @@ module.exports = function (db){
                     dataSupplier: dataSupplier.rows,
                     dataStorage: dataStorage.rows,
                     dataCategory: dataCategory.rows,
-                    dataUnit: dataUnit.rows
+                    dataUnit: dataUnit.rows,
+                    moment
                 })   
             })
         } catch (err){

@@ -208,10 +208,10 @@
                                                         name="variantQrcode" value="<%= item.qrcode %>">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label for="variantImage" class="form-label">Image</label>
-                                                    <input type="file" class="form-control form-control-sm"
-                                                        style=" padding-bottom: 33px" id="variantImage"
-                                                        name="variantImage" value="<%= item.image %>"> disabled
+                                                    <label for="reg_date" class="form-label">Registered Date</label>
+                                                    <input type="text" class="form-control" id="reg_date"
+                                                        name="reg_date"
+                                                        value="<%= moment(item.reg_date).format('YYYY MMM DD') %>">
                                                 </div>
                                                 <div class="col-md-6" style="margin-top:15px ;">
                                                     <label for="productName" class="form-label">Product
