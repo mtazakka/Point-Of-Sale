@@ -42,143 +42,153 @@
                         </div>
                     </div>
                 </li>
-                <!--COSTUMER-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCostumer"
-                        aria-expanded="true" aria-controls="collapseCostumer">
-                        <i class="fa-solid fa-person-chalkboard"></i>
-                        <span>COSTUMER</span>
-                    </a>
-                    <div id="collapseCostumer" class="collapse" aria-labelledby="headingCostumer"
-                        data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../costumer/add">Add Costumer</a>
-                            <a class="collapse-item" href="../costumer/list">Costumer List</a>
-                            <a class="collapse-item" href="../costumer/credit" id="developmentprocess">Credit
-                                Costumer</a>
-                            <a class="collapse-item" href="../costumer/paid" id="developmentprocess">Paid Costumer</a>
-                            <a class="collapse-item" href="../costumer/ledger" id="developmentprocess">Costumer
-                                Ledger</a>
-                            <a class="collapse-item" href="../costumer/advancer" id="developmentprocess">Costumer
-                                Advancer</a>
+                <% if (user.status=="Admin" ) { %>
+                    <!--COSTUMER-->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCostumer"
+                            aria-expanded="true" aria-controls="collapseCostumer">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                            <span>COSTUMER</span>
+                        </a>
+                        <div id="collapseCostumer" class="collapse" aria-labelledby="headingCostumer"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="../costumer/add">Add Costumer</a>
+                                <a class="collapse-item" href="../costumer/list">Costumer List</a>
+                                <a class="collapse-item" href="../costumer/credit" id="developmentprocess">Credit
+                                    Costumer</a>
+                                <a class="collapse-item" href="../costumer/paid" id="developmentprocess">Paid
+                                    Costumer</a>
+                                <a class="collapse-item" href="../costumer/ledger" id="developmentprocess">Costumer
+                                    Ledger</a>
+                                <a class="collapse-item" href="../costumer/advancer" id="developmentprocess">Costumer
+                                    Advancer</a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <!--SUPPLIER-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed href=" #" data-toggle="collapse" data-target="#collapseSupplier"
-                        aria-expanded="true" aria-controls="collapseSupplier">
-                        <i class="fa-solid fa-boxes-packing"></i>
-                        <span>SUPPLIER</span>
-                    </a>
-                    <div id="collapseSupplier" class="collapse" aria-labelledby="headingSupplier"
-                        data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../supplier/add">Add Supplier</a>
-                            <a class="collapse-item" href="../supplier/list">Supplier List</a>
-                            <a class="collapse-item" href="../supplier/ledger" id="developmentprocess">Supplier
-                                Ledger</a>
-                            <a class="collapse-item" href="../supplier/advancer" id="developmentprocess">Supplier
-                                Advancer</a>
+                    </li>
+                    <!--SUPPLIER-->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed href=" #" data-toggle="collapse" data-target="#collapseSupplier"
+                            aria-expanded="true" aria-controls="collapseSupplier">
+                            <i class="fa-solid fa-boxes-packing"></i>
+                            <span>SUPPLIER</span>
+                        </a>
+                        <div id="collapseSupplier" class="collapse" aria-labelledby="headingSupplier"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="../supplier/add">Add Supplier</a>
+                                <a class="collapse-item" href="../supplier/list">Supplier List</a>
+                                <a class="collapse-item" href="../supplier/ledger" id="developmentprocess">Supplier
+                                    Ledger</a>
+                                <a class="collapse-item" href="../supplier/advancer" id="developmentprocess">Supplier
+                                    Advancer</a>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <!--PRODUCT-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
-                        aria-expanded="true" aria-controls="collapseProduct">
-                        <i class="fa-solid fa-pills"></i>
-                        <span>PRODUCT</span>
-                    </a>
-                    <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct"
-                        data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../product/addcategory">Add Category</a>
-                            <a class="collapse-item" href="../product/categorylist">Category List</a>
-                            <a class="collapse-item" href="../product/addunit">Add Unit</a>
-                            <a class="collapse-item" href="../product/unitlist">Unit List</a>
-                            <a class="collapse-item" href="../product/addstorage">Add Storage</a>
-                            <a class="collapse-item" href="../product/storagelist">Storage List</a>
-                            <a class="collapse-item" href="../product/addproduct">Add Product</a>
-                            <a class="collapse-item" href="../product/productlist">Product List</a>
-                            <a class="collapse-item" href="../product/addproductvariant">Add Product Variant</a>
-                            <a class="collapse-item" href="../product/manageproduct">Manage Product</a>
-                        </div>
-                    </div>
-                </li>
-                <!--PURCHASE-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePurchase"
-                        aria-expanded="true" aria-controls="collapsePurchase">
-                        <i class="fa-solid fa-cart-arrow-down"></i>
-                        <span>PURCHASE</span>
-                    </a>
-                    <div id="collapsePurchase" class="collapse" aria-labelledby="headingPurchase"
-                        data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../purchase/add">Add Purchase</a>
-                            <a class="collapse-item" href="../purchase/manage">Purchase Management</a>
-                        </div>
-                    </div>
-                </li>
-                <!--STOCK-->
-                <li class="nav-item" id="developmentprocess">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
-                        aria-expanded="true" aria-controls="collapseStock">
-                        <i class="fa-solid fa-list"></i>
-                        <span>STOCK</span>
-                    </a>
-                    <div id="collapseStock" class="collapse" aria-labelledby="headingStock"
-                        data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../stock">Stock Report</a>
-                        </div>
-                    </div>
-                </li>
-                <!--ACCOUNT-->
-                <li class="nav-item" id="developmentprocess">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccount"
-                        aria-expanded="true" aria-controls="collapseAccount">
-                        <i class="fa-solid fa-money-bill-wave"></i>
-                        <span>ACCOUNTS</span>
-                    </a>
-                    <div id="collapseAccount" class="collapse" aria-labelledby="headingAccount"
-                        data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../account/chart">Chart of Account</a>
-                            <a class="collapse-item" href="../account/openingbalance">Opening Balance</a>
-                            <a class="collapse-item" href="../account/supplierpayment">Supplier Payment</a>
-                            <a class="collapse-item" href="../account/costumerreceive">Costumer Receive</a>
-                            <a class="collapse-item" href="../account/cashadjusment">Cash Adjusment</a>
-                            <a class="collapse-item" href="../account/debitvoucher">Debit Voucher</a>
-                            <a class="collapse-item" href="../account/creditvoucher">Credit Voucher</a>
-                            <a class="collapse-item" href="../account/contravoucher">Contra Voucher</a>
-                            <a class="collapse-item" href="../account/journalvoucher">Journal Voucher</a>
-                        </div>
-                    </div>
-                </li>
-                <hr class="sidebar-divider">
+                    </li>
+                    <%}%>
+                        <!--PRODUCT-->
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
+                                aria-expanded="true" aria-controls="collapseProduct">
+                                <i class="fa-solid fa-pills"></i>
+                                <span>PRODUCT</span>
+                            </a>
+                            <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct"
+                                data-parent="#accordionSidebar">
+                                <div class="bg-white py-2 collapse-inner rounded">
+                                    <% if (user.status=="Admin" ) { %>
+                                        <a class="collapse-item" href="../product/addcategory">Add Category</a>
+                                        <a class="collapse-item" href="../product/categorylist">Category List</a>
+                                        <a class="collapse-item" href="../product/addunit">Add Unit</a>
+                                        <a class="collapse-item" href="../product/unitlist">Unit List</a>
+                                        <a class="collapse-item" href="../product/addstorage">Add Storage</a>
+                                        <a class="collapse-item" href="../product/storagelist">Storage List</a>
+                                        <a class="collapse-item" href="../product/addproduct">Add Product</a>
+                                        <a class="collapse-item" href="../product/productlist">Product List</a>
+                                        <%}%>
+                                            <a class="collapse-item" href="../product/addproductvariant">Add Product
+                                                Variant</a>
+                                            <a class="collapse-item" href="../product/manageproduct">Manage Product</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!--PURCHASE-->
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse"
+                                data-target="#collapsePurchase" aria-expanded="true" aria-controls="collapsePurchase">
+                                <i class="fa-solid fa-cart-arrow-down"></i>
+                                <span>PURCHASE</span>
+                            </a>
+                            <div id="collapsePurchase" class="collapse" aria-labelledby="headingPurchase"
+                                data-parent="#accordionSidebar">
+                                <div class="bg-white py-2 collapse-inner rounded">
+                                    <a class="collapse-item" href="../purchase/add">Add Purchase-Stock</a>
+                                    <a class="collapse-item" href="../purchase/manage">Purchase Management</a>
+                                </div>
+                            </div>
+                        </li>
+                        <% if (user.status=="Admin" ) { %>
+                            <!--STOCK-->
+                            <li class="nav-item" id="developmentprocess">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse"
+                                    data-target="#collapseStock" aria-expanded="true" aria-controls="collapseStock">
+                                    <i class="fa-solid fa-list"></i>
+                                    <span>STOCK</span>
+                                </a>
+                                <div id="collapseStock" class="collapse" aria-labelledby="headingStock"
+                                    data-parent="#accordionSidebar">
+                                    <div class="bg-white py-2 collapse-inner rounded">
+                                        <a class="collapse-item" href="../stock">Stock Report</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--ACCOUNT-->
+                            <li class="nav-item" id="developmentprocess">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse"
+                                    data-target="#collapseAccount" aria-expanded="true" aria-controls="collapseAccount">
+                                    <i class="fa-solid fa-money-bill-wave"></i>
+                                    <span>ACCOUNTS</span>
+                                </a>
+                                <div id="collapseAccount" class="collapse" aria-labelledby="headingAccount"
+                                    data-parent="#accordionSidebar">
+                                    <div class="bg-white py-2 collapse-inner rounded">
+                                        <a class="collapse-item" href="../account/chart">Chart of Account</a>
+                                        <a class="collapse-item" href="../account/openingbalance">Opening Balance</a>
+                                        <a class="collapse-item" href="../account/supplierpayment">Supplier Payment</a>
+                                        <a class="collapse-item" href="../account/costumerreceive">Costumer Receive</a>
+                                        <a class="collapse-item" href="../account/cashadjusment">Cash Adjusment</a>
+                                        <a class="collapse-item" href="../account/debitvoucher">Debit Voucher</a>
+                                        <a class="collapse-item" href="../account/creditvoucher">Credit Voucher</a>
+                                        <a class="collapse-item" href="../account/contravoucher">Contra Voucher</a>
+                                        <a class="collapse-item" href="../account/journalvoucher">Journal Voucher</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <hr class="sidebar-divider">
 
-                <!--USER-->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
-                        aria-expanded="true" aria-controls="collapseReport">
-                        <i class="fa-solid fa-money-bill-wave"></i>
-                        <span>USER</span>
-                    </a>
-                    <div id="collapseReport" class="collapse" aria-labelledby="headingReport"
-                        data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../user/add">Add User</a>
-                            <a class="collapse-item" href="../user/list">User List</a>
-                            <a class="collapse-item" id="developmentprocess" href="../user/submiterror">Submit Error</a>
-                        </div>
-                    </div>
-                </li>
-                <hr class="sidebar-divider d-none d-md-block">
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
+                            <!--USER-->
+                            <li class="nav-item">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse"
+                                    data-target="#collapseReport" aria-expanded="true" aria-controls="collapseReport">
+                                    <i class="fa-solid fa-money-bill-wave"></i>
+                                    <span>USER</span>
+                                </a>
+                                <div id="collapseReport" class="collapse" aria-labelledby="headingReport"
+                                    data-parent="#accordionSidebar">
+                                    <div class="bg-white py-2 collapse-inner rounded">
+                                        <a class="collapse-item" href="../user/add">Add User</a>
+                                        <a class="collapse-item" href="../user/list">User List</a>
+                                        <a class="collapse-item" id="developmentprocess"
+                                            href="../user/submiterror">Submit
+                                            Error</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <%}%>
+                                <hr class="sidebar-divider d-none d-md-block">
+                                <div class="text-center d-none d-md-inline">
+                                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                                </div>
             </ul>
             <!-- Start of Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
@@ -233,10 +243,12 @@
                                                                 <%= currencyFormatter.format(item.cashback) %>
                                                             </td>
                                                             <td>
-                                                                <a class="btn btn-warning"
-                                                                    href="/sale/show/<%= item.no_invoice %>">EDIT</a>
-                                                                <a class="btn btn-primary" target="_blank"
-                                                                    href="/sale/invoice/<%= item.no_invoice %>">PRINT</a>
+                                                                <% if (user.status=="Admin" ) { %>
+                                                                    <a class="btn btn-warning"
+                                                                        href="/sale/show/<%= item.no_invoice %>">EDIT</a>
+                                                                    <%}%>
+                                                                        <a class="btn btn-primary" target="_blank"
+                                                                            href="/sale/invoice/<%= item.no_invoice %>">PRINT</a>
                                                             </td>
                                                         </tr>
                                                         <% }) %>
