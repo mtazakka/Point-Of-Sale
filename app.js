@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const fileUpload = require('express-fileupload');
+var flash = require('connect-flash');
+var session = require('express-session')
 
 const { Pool } = require('pg')
 const pool = new Pool({
@@ -14,7 +16,7 @@ const pool = new Pool({
   port: 5432,
 })
 
-var indexRouter = require('./routes/index');
+// var indexRouter = require('./routes/index');
 var dashboardRouter = require('./routes/dashboard')(pool);
 var supplierRouter = require('./routes/supplier')(pool);
 var productRouter = require('./routes/product')(pool);
@@ -37,9 +39,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
+app.use(session({
+  secret: 'rubicamp',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(flash());
 
-app.use('/', indexRouter);
-app.use('/dashboard', dashboardRouter);
+// app.use('/', indexRouter);
+app.use('/', dashboardRouter);
 app.use('/supplier', supplierRouter);
 app.use('/product', productRouter);
 app.use('/stock', stockRouter);

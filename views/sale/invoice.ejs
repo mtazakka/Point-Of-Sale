@@ -118,9 +118,8 @@
                             </td>
 
                             <td>
-                                Invoice #: 123<br />
-                                Created: January 1, 2015<br />
-                                Due: February 1, 2015
+                                Invoice: <%=saleTransaction.no_invoice%> <br />
+                                    Created: <%= moment(saleTransaction.date).format('DD MMM YYYY hh:mm:ss')%>
                             </td>
                         </tr>
                     </table>
