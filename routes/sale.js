@@ -45,7 +45,7 @@ module.exports = function (db){
             const dataUnit = await db.query('SELECT * FROM UNIT')
             const dataProductVariant= await db.query('SELECT * FROM PRODUCT_VARIANT')
             const saleTransaction = await db.query('SELECT * FROM SALE_TRANSACTION WHERE no_invoice = $1', [req.params.no_invoice])
-            const {rows} = await db.query('SELECT idvariant, name from PRODUCT_VARIANT ORDER BY reg_date asc')
+            const {rows} = await db.query('SELECT PD.idvariant, PD.name, product.name as product_name from PRODUCT_VARIANT as PD, PRODUCT WHERE PD.idproduct = product.id ORDER BY PD.reg_date asc')
             res.render('sale/newtransaction', {
                 user:req.session.user,
                 currencyFormatter,

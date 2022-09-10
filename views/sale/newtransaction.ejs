@@ -269,7 +269,8 @@
                                                         <option value="" disabled selected> Choose ...</option>
                                                         <% product_variant.forEach ((item, index)=> {%>
                                                             <option value="<%= item.idvariant %>">
-                                                                <%= item.idvariant + " - " + item.name %>
+                                                                <%= item.idvariant + " - " + item.product_name + " - " +
+                                                                    item.name %>
                                                             </option>
                                                             <% }) %>
                                                     </select>
@@ -357,7 +358,7 @@
                                                     <label for="payment" class="col-sm-2 col-form-label">Total
                                                         Payment</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="payment" value='0'
+                                                        <input type="number" class="form-control" id="payment" value='0'
                                                             required>
                                                     </div>
                                                 </div>
@@ -371,8 +372,8 @@
                                                 </div>
                                                 <button type="reset" class="btn btn-warning">RESET</button>
                                                 <a href="../manage">
-                                                    <button type="submit" class="btn btn-primary" style="float:right ;"
-                                                        onclick="success()">SUBMIT</button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        style="float:right ;">SUBMIT</button>
                                                 </a>
                                             </form>
                                         </div>

@@ -246,7 +246,8 @@
                                                         <option value="" disabled selected> Choose ...</option>
                                                         <% product_variant.forEach ((item, index)=> {%>
                                                             <option value="<%= item.idvariant %>">
-                                                                <%= item.idvariant + " - " + item.name %>
+                                                                <%= item.idvariant + " - " + item.product_name + " - " +
+                                                                    item.name %>
                                                             </option>
                                                             <% }) %>
                                                     </select>

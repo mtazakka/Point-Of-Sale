@@ -37,7 +37,7 @@ module.exports = function (db){
     router.get('/show/:id', isLoggedIn, async function(req, res, next) {
         try{     
             const purchaseTransaction = await db.query('SELECT * FROM purchase_TRANSACTION WHERE id = $1', [req.params.id])
-            const {rows} = await db.query('SELECT idvariant, name from PRODUCT_VARIANT ORDER BY idvariant')
+             const {rows} = await db.query('SELECT PD.idvariant, PD.name, product.name as product_name from PRODUCT_VARIANT as PD, PRODUCT WHERE PD.idproduct = product.id ORDER BY PD.reg_date asc')
             res.render('purchase/newtransaction', {
                 user:req.session.user,
                 currentPage: 'purchaseTransaction',
