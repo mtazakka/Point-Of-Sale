@@ -23,7 +23,8 @@ module.exports = function (db){
                 dataSale: dataSale.rows[0]
             })
         } catch (e){
-            res.send(e)
+            console.log(e)
+            return res.send(e)
         }
     
     });
