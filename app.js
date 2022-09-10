@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -9,11 +11,11 @@ var session = require('express-session')
 
 const { Pool } = require('pg')
 const pool = new Pool({
-  user: 'tazakka',
-  host: 'localhost',
-  database: 'midposdb',
-  password: '1234',
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  port: process.env.PORT,
 })
 
 // var indexRouter = require('./routes/index');
