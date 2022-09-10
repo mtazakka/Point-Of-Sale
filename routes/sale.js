@@ -20,7 +20,7 @@ module.exports = function (db){
     });
     router.get('/manage', isLoggedIn, async function (req, res, next) {
     try{
-        const {rows} = await db.query('SELECT * FROM SALE_TRANSACTION')
+        const {rows} = await db.query('SELECT * FROM SALE_TRANSACTION ORDER BY date DESC')
         const noInvoice = req.query.noInvoice ? req.query.noInvoice : rows.length > 0 ? rows[0].no_invoice : '';
         const details  = await db.query('SELECT SD.*, PV.name FROM SALE_DETAIL as SD LEFT JOIN PRODUCT_VARIANT as PV ON SD.idvariant = PV.idvariant WHERE SD.no_invoice = $1 ORDER BY SD.id', [noInvoice])
         res.render ('sale/managesale',{
@@ -29,7 +29,8 @@ module.exports = function (db){
             rows,
             currencyFormatter,
             moment,
-            details: details.rows
+            details: details.rows,
+            noInvoice
         })
     } catch (e){
         res.send(e)
@@ -44,7 +45,7 @@ module.exports = function (db){
             const dataUnit = await db.query('SELECT * FROM UNIT')
             const dataProductVariant= await db.query('SELECT * FROM PRODUCT_VARIANT')
             const saleTransaction = await db.query('SELECT * FROM SALE_TRANSACTION WHERE no_invoice = $1', [req.params.no_invoice])
-            const {rows} = await db.query('SELECT idvariant, name from PRODUCT_VARIANT ORDER BY idvariant')
+            const {rows} = await db.query('SELECT idvariant, name from PRODUCT_VARIANT ORDER BY reg_date asc')
             res.render('sale/newtransaction', {
                 user:req.session.user,
                 currencyFormatter,
@@ -69,7 +70,7 @@ module.exports = function (db){
     router.get('/product_variant/:idvariant', isLoggedIn, async function(req, res, next) {
             try{
                 console.log(req.params.idvariant)
-                const { rows } = await db.query('SELECT PV.idvariant, PV.qrcode, PV.image, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.price, PV.stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id AND PV.idvariant = $1', [req.params.idvariant])
+                const { rows } = await db.query('SELECT PV.idvariant, PV.qrcode, PV.image, product.name as product_name, storage.name as storage_name, PV.name, category.name as category_name, PV.price, PV.stock as stock, unit.name as unit_name, PV.remarks, supplier.name as supplier_name, PV.supplier_price FROM PRODUCT_VARIANT as PV, PRODUCT, SUPPLIER, CATEGORY, UNIT, STORAGE WHERE PV.idproduct = product.id AND PV.idstorage = storage.id AND PV.idcategory = category.id AND PV.idunit = unit.id AND PV.idsupplier = supplier.id AND PV.idvariant = $1', [req.params.idvariant])
                 res.json(rows[0])
             } catch (e){
                 console.log("Error at /product_variant", e)
@@ -92,7 +93,7 @@ module.exports = function (db){
       router.post('/payment', isLoggedIn, async function(req, res, next) {
         console.log(req.body.cashback, req.body.payment, req.body.no_invoice)
         try{
-            const {rows} = await db.query('UPDATE SALE_TRANSACTION SET cashback=$1, payment=$2 WHERE no_invoice = $3', [req.body.cashback, req.body.payment, req.body.no_invoice])            
+            const {rows} = await db.query('UPDATE SALE_TRANSACTION SET cashback=$1, payment=$2, processby=$3  WHERE no_invoice = $4', [req.body.cashback, req.body.payment, req.session.user.name, req.body.no_invoice])            
             // res.redirect('/manage'),
             res.json(rows[0])
         } catch (e){
@@ -130,6 +131,19 @@ module.exports = function (db){
         }
     
     });
-
+router.get('/delete/:no_invoice', isLoggedIn, async function (req, res, next) {
+        try{
+            const deleteData = 'DELETE FROM SALE_TRANSACTION WHERE no_invoice = $1'
+            await db.query(deleteData, [req.params.no_invoice], (err) => {
+                if (err) {
+                    console.log(err)
+                    return res.send(err)
+                }
+            res.redirect('../manage')
+            })
+        } catch (err) {
+            console.log(err)
+            return res.send(err)
+    }})
 return router;
 }

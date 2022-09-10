@@ -36,7 +36,9 @@
                     <div id="collapseSale" class="collapse show" aria-labelledby="headingSale"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="../sale/add">New Sale</a>
+                            <a class="collapse-item" href="../sale/add"
+                                onclick="alert('Once clicked, please finish')">New
+                                Sale</a>
                             <a class="collapse-item active" href="../sale/manage">Sale Management</a>
 
                         </div>
@@ -122,7 +124,8 @@
                             <div id="collapsePurchase" class="collapse" aria-labelledby="headingPurchase"
                                 data-parent="#accordionSidebar">
                                 <div class="bg-white py-2 collapse-inner rounded">
-                                    <a class="collapse-item" href="../purchase/add">Add Purchase-Stock</a>
+                                    <a class="collapse-item" href="../purchase/add"
+                                        onclick="alert('Once clicked, please finish')">Add Purchase-Stock</a>
                                     <a class="collapse-item" href="../purchase/manage">Purchase Management</a>
                                 </div>
                             </div>
@@ -216,6 +219,7 @@
                                                         <th>Total Price</th>
                                                         <th>Total Payment</th>
                                                         <th>Cashback</th>
+                                                        <th>Process By</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -243,12 +247,15 @@
                                                                 <%= currencyFormatter.format(item.cashback) %>
                                                             </td>
                                                             <td>
+                                                                <%= item.processby %>
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-primary" target="_blank"
+                                                                    href="/sale/invoice/<%= item.no_invoice %>">PRINT</a>
                                                                 <% if (user.status=="Admin" ) { %>
-                                                                    <a class="btn btn-warning"
-                                                                        href="/sale/show/<%= item.no_invoice %>">EDIT</a>
+                                                                    <a class="btn btn-danger"
+                                                                        href="/sale/delete/<%= item.no_invoice %>">DELETE</a>
                                                                     <%}%>
-                                                                        <a class="btn btn-primary" target="_blank"
-                                                                            href="/sale/invoice/<%= item.no_invoice %>">PRINT</a>
                                                             </td>
                                                         </tr>
                                                         <% }) %>
@@ -260,11 +267,16 @@
                                                     <th>Total Price</th>
                                                     <th>Total Payment</th>
                                                     <th>Cashback</th>
+                                                    <th>Process By</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </table>
                                         </div>
                                         <div class="card-body">
+                                            <p>Transaction Detail, Invoice No. <strong>
+                                                    <%= noInvoice %>
+                                                </strong>
+                                            </p>
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>

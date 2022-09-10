@@ -36,7 +36,9 @@
                     <div id="collapseSale" class="collapse show" aria-labelledby="headingSale"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item active" href="../../sale/add">New Sale</a>
+                            <a class="collapse-item active" href="../../sale/add"
+                                onclick="alert('Once clicked, please finish')">New
+                                Sale</a>
                             <a class="collapse-item" href="../../sale/manage">Sale Management</a>
 
                         </div>
@@ -136,7 +138,8 @@
                                     <div id="collapsePurchase" class="collapse" aria-labelledby="headingPurchase"
                                         data-parent="#accordionSidebar">
                                         <div class="bg-white py-2 collapse-inner rounded">
-                                            <a class="collapse-item" href="../../purchase/add">Add Purchase</a>
+                                            <a class="collapse-item" href="../../purchase/add"
+                                                onclick="alert('Once clicked, please finish')">Add Purchase-Stock</a>
                                             <a class="collapse-item" href="../../purchase/manage">Purchase
                                                 Management</a>
                                         </div>
@@ -300,10 +303,15 @@
                                                     <input type="text" class="form-control" id="unit_name"
                                                         name="unit_name" readonly>
                                                 </div>
-                                                <div class="col-md-6" style="margin-top:15px ;">
+                                                <div class="col-md-3" style="margin-top:15px ;">
+                                                    <label for="stock" class=" orm-label">Stock</label>
+                                                    <input type="text" class="form-control" id="stock" readonly>
+                                                </div>
+                                                <div class=" col-md-3" style="margin-top:15px ;">
                                                     <label for="total_price_item" class="form-label">Total
                                                         Price</label>
-                                                    <input type="text" class="form-control" id="total_price_item">
+                                                    <input type="text" class="form-control" id="total_price_item"
+                                                        readonly>
                                                 </div>
                                                 <div class="col-md-12" style="margin-top:15px; margin-bottom: 20px;">
                                                     <label for="remarks" class="form-label">Variant
@@ -349,7 +357,8 @@
                                                     <label for="payment" class="col-sm-2 col-form-label">Total
                                                         Payment</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="payment" value='0'>
+                                                        <input type="text" class="form-control" id="payment" value='0'
+                                                            required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
@@ -391,6 +400,7 @@
                                 $('#supplier_name').val(data.supplier_name)
                                 $('#category_name').val(data.category_name)
                                 $('#price').val(data.price)
+                                $('#stock').val(data.stock)
                                 $('#qty').val(1)
                                 $('#unit_name').val(data.unit_name)
                                 $('#total_price_item').val(data.price)

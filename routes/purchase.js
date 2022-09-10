@@ -18,7 +18,7 @@ module.exports = function (db){
     });
     router.get('/manage', isLoggedIn, async function (req, res, next) {
     try{
-        const {rows} = await db.query('SELECT * FROM PURCHASE_TRANSACTION')
+        const {rows} = await db.query('SELECT * FROM PURCHASE_TRANSACTION ORDER BY date desc')
         const noInvoice = req.query.noInvoice ? req.query.noInvoice : rows.length > 0 ? rows[0].no_invoice : '';
         const details  = await db.query('SELECT SD.*, PV.name FROM PURCHASE_DETAIL as SD LEFT JOIN PRODUCT_VARIANT as PV ON SD.idvariant = PV.idvariant WHERE SD.no_invoice = $1 ORDER BY SD.id', [noInvoice])
         res.render ('purchase/managepurchase',{
