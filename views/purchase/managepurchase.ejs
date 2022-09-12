@@ -242,22 +242,12 @@
                                                                 <td>
                                                                     <a class="btn btn-danger"
                                                                         onclick="alert('Please send request by email to start_up@company.com')"
-                                                                        href="/purchase/delete/<%= item.id %>">DELETE</a>
+                                                                        href="#">DELETE</a>
                                                                 </td>
                                                                 <%}%>
                                                         </tr>
                                                         <% }) %>
                                                 </tbody>
-                                                <tr>
-                                                    <th>No.</th>
-                                                    <th>No. Invoice</th>
-                                                    <th>Date</th>
-                                                    <th>Total Price</th>
-                                                    <th>Supplier Name</th>
-                                                    <% if (user.status=="Admin" ) { %>
-                                                        <th>Action</th>
-                                                        <%}%>
-                                                </tr>
                                             </table>
                                         </div>
                                         <div class="card-body">
