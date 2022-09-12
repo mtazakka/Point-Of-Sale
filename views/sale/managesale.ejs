@@ -252,6 +252,7 @@
                                                                     href="/sale/invoice/<%= item.no_invoice %>">PRINT</a>
                                                                 <% if (user.status=="Admin" ) { %>
                                                                     <a class="btn btn-danger"
+                                                                        onclick="alert('Please contact Developer')"
                                                                         href="/sale/delete/<%= item.no_invoice %>">DELETE</a>
                                                                     <%}%>
                                                             </td>
